@@ -1,2 +1,2 @@
 # E-Commerce-Website
-backend &amp; frontend development of a coffeeshop website
+backend with php &amp; frontend with HTML, CSS, BOOTSTRAP development of a coffeeshop website
