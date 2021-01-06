@@ -91,15 +91,15 @@ $result = mysqli_query($db, $sql_statement);
 
 while($row = mysqli_fetch_assoc($result))
 {
-  $id = $row['id'];
-  $mysender = $row['sender'];
-	$message = $row['message'];
+  $customer_id = $row['customer_id'];
+  $quantity = $row['quantity'];
+  $prdouct_id = $row['product_id'];
+  $price = $row['price'];
+	$name = $row['name'];
 
-	echo "<tr>" . "<th>" . $id . "</th>" . "<th>" . $mysender . "</th>" . "<th>" . $message . "</th>" . "</tr>";
 }
 
 ?>
-  
   
   </body>
 </html>

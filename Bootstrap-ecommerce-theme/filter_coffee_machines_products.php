@@ -112,7 +112,14 @@
         <img src="./images/filtercoffeemachine.png"  style="width:100%">
         <h2>Filter Coffee Machine</h2>
         <p class="price">$149</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Filter Coffee Machine" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="13" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="149" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>   
       
     
         

@@ -112,22 +112,17 @@
         <img src="./images/turkishcoffeemachinepng.png"  style="width:100%">
         <h2>Turkish Coffee Machine</h2>
         <p class="price">$119</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Turkish Coffee Machine" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="15" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="119" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>    
       
       </div>
 
-      <div class="card">
-        
-        <img src="./images/turkishcoffeemachinepng.png"  style="width:100%">
-        <h2>Turkish Coffee Machine</h2>
-        <p class="price">$119</p>
-        <form method="POST" action="send_cart.php">
-        <input type="hidden" name="Turkish Coffee Machine"  price="119" />
-        <button class="button2">Add to Cart</button>
-    </form>
-
-
-      </div>
       
   </body>
 </html>

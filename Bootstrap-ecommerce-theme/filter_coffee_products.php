@@ -112,19 +112,40 @@
         <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
         <h2>Vanilla Flavoured Filter Coffee</h2>
         <p class="price">$19</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Vanilla Flavoured Filter Coffee" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="8" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="19" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>    
       
     
         <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
         <h2>Caramel Flavoured Filter Coffee</h2>
         <p class="price">$19</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Caramel Flavoured Filter Coffee" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="9" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="19" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>  
 
 
         <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
         <h2>Hazelnut Flavoured Filter Coffee</h2>
         <p class="price">$25</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Hazelnut Flavoured Filter Coffee" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="10" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="25" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>  
 
         
       </div>

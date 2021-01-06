@@ -84,7 +84,8 @@
       <div class="jumbotron">
         <h3 style="color:white">Take a break, drink some coffee :)</h3>
       
-        <a class="btn btn-large btn-success" href="list.html">Sign in/Sign up</a>
+        <a class="btn btn-large btn-success" href="login.html">Sign in</a>
+        <a class="btn btn-large btn-success" href="register.html">Sign up</a>
       </div>
 
     </div> <!-- /container -->

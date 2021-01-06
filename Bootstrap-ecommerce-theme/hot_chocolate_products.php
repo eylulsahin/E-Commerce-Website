@@ -112,14 +112,27 @@
         <img src="./images/hot-c-50.png"  style="width:100%">
         <h2>Hot Chocolate 50g </h2>
         <p class="price">$15.5</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Hot Chocolate 50g" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="11" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15.5" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>        
       
     
         <img src="./images/hot-c-100.png"  style="width:100%">
-        <h2>Hot Chocolate 100g Roasted</h2>
+        <h2>Hot Chocolate 100g</h2>
         <p class="price">$20</p>
-        <p><button>Add to Cart</button></p> 
-
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Hot Chocolate 100g" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="12" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="20" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>  
 
       </div>
       

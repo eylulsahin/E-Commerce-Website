@@ -111,19 +111,40 @@
         <img src="https://www.aydanaya.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbklCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--07904727a8f87365edf01778c32ac40875a63ac0/kahve-66.jpg"  style="width:100%">
         <h2>Ethiopia Espresso</h2>
         <p class="price">$15</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Ethiopia Espresso" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="1" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>     
       
     
         <img src="https://www.40kafe.com/Uploads/UrunResimleri/buyuk/moliendo-kenya-aa-muranga-yoresel-kahve-139f.jpg"  style="width:100%">
         <h2>Kenya Espresso</h2>
         <p class="price">$15</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Kenya Espresso" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="2" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>  
 
 
         <img src="https://www.40kafe.com/Uploads/UrunResimleri/buyuk/moliendo-guatemala-antigua-yoresel-kahve-6585.jpg"  style="width:100%">
         <h2>Guatemala Espresso</h2>
         <p class="price">$15</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Guatemala Espresso" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="3" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>  
     
         
       </div>

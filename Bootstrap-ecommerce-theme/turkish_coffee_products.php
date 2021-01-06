@@ -117,25 +117,53 @@ include "config.php";
         <img src="./images/t_c 150g d_r.png"  style="width:100%">
         <h2>Double Roasted Turkish Coffee 150g </h2>
         <p class="price">$15</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Double Roasted Turkish Coffee 150g" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="4" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>    
       
     
         <img src="./images/t_c_150g r.png"  style="width:100%">
         <h2>Roasted Turkish Coffee 150g </h2>
         <p class="price">$12</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Roasted Turkish Coffee 150g" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="7" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="12" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>    
 
 
         <img src="./images/t_c 250 g d_r.png"  style="width:100%">
         <h2>Double Roasted Turkish Coffee 250g </h2>
         <p class="price">$18</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Double Roasted Turkish Coffee 250g " placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="5" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="18" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>    
 
 
         <img src="./images/t_c 250g r.png" style="width:100%">
         <h2>Roasted Turkish Coffee 250g </h2>
         <p class="price">$15</p>
-        <p><button>Add to Cart</button></p> 
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Roasted Turkish Coffee 250g" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="6" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+</form>    
     
         
       </div>

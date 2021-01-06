@@ -112,7 +112,14 @@
         <img src="./images/espressocmachinepng.png"  style="width:100%">
         <h2>Espresso Coffee Machine</h2>
         <p class="price">$229</p>
-        <p><button>Add to Cart</button></p>     
+        <form action="send_cart.php" method="POST">
+  <input type="hidden" id="fname" name="name" value="Espresso Coffee Machine" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
+  <input type="hidden" id="fname" name="product_id" value="14" placeholder="Type your name"><br>
+  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="hidden" id="fname" name="price" value="229" placeholder="Type your name"><br>
+	<button class="button2">Add to Cart</button>
+  </form>      
       
         
       </div>
