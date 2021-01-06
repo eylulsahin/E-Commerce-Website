@@ -10,37 +10,8 @@
         background-attachment: fixed;  
         background-size: cover;
       }
-
-      .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  background-color: white;
-}
-
-.price {
-  color: grey;
-  font-size: 22px;
-}
-
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-.card button:hover {
-  opacity: 0.7;
-}
       </style>
+
 
     <meta charset="utf-8">
     <title>Coffee House</title>
@@ -64,17 +35,19 @@
 <!--style="background-image: url('./images/sign in:up alternative.png');" background-size: cover;   background-repeat: no-repeat;
     background-attachment: fixed; -->
 
+
   <body>
+
 
     <div class="container" >
 
       <div class="masthead">
-        <h3 class="muted" style="color:white">Turkish Coffee Machines</h3>
+        <h3 class="muted" style="color:white">Welcome to Coffee House</h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
                 
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -83,37 +56,38 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li class="nav-header">Coffees</li>
-                    <li><a href="filter_coffee_products.html">Filter coffee</a></li>
-                    <li><a href="turkish_coffee_products.html">Turkish coffee</a></li>
-                    <li><a href="espresso_products.html">Espresso</a></li>
-                    <li><a href="hot_chocolate_products.html">Hot chocolate</a></li>
+                    <li><a href="filter_coffee_products.php">filter coffee</a></li>
+                    <li><a href="turkish_coffee_products.php">turkish coffee</a></li>
+                    <li><a href="espresso_products.php">espresso</a></li>
+                    <li><a href="hot_chocolate_products.php">hot chocolate</a></li>
                     <li class="divider"></li>
                     <li class="nav-header">Coffee Machines</li>
-                    <li><a href="filter_coffee_machines_products.html">Filter coffee Machine</a></li>
-                    <li><a href="turkish_coffee_machine.html">Turkish coffee machine</a></li>
-                    <li><a href="espresso_coffee_machine.html">Espresso machine</a></li>
+                    <li><a href="filter_coffee_machines_products.php">filter coffee Machine</a></li>
+                    <li><a href="turkish_coffee_machine.php">turkish coffee machine</a></li>
+                    <li><a href="espresso_coffee_machine.php">espresso machine</a></li>
+                    <li><a href="hot_chocolate_products.php">hot chocolate machine</a></li>
                   </ul>
                 
                 </li>
 
                 <li><a href="status.html">My Account</a></li>
-                <li><a href="new.html">My Cart</a></li>
+                <li><a href="new.php">My Cart</a></li>
                 <li><a href="contactus.html">Contact Us</a></li>
 
               </ul>
             </div>
           </div>
         </div><!-- /.navbar -->
-      </div>  
-
-      <div class="card">
-        
-        <img src="./images/turkishcoffeemachinepng.png"  style="width:100%">
-        <h2>Turkish Coffee Machine</h2>
-        <p class="price">$119</p>
-        <p><button>Add to Cart</button></p>     
-      
       </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h3 style="color:white">Take a break, drink some coffee :)</h3>
       
+        <a class="btn btn-large btn-success" href="list.html">Sign in/Sign up</a>
+      </div>
+
+    </div> <!-- /container -->
+  
   </body>
 </html>

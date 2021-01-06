@@ -66,45 +66,46 @@
 
   <body>
 
-    <div class="container" >
+  <div class="container" >
 
-      <div class="masthead">
-        <h3 class="muted" style="color:white">Filter Coffee Products</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Categories
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-header">Coffees</li>
-                    <li><a href="filter_coffee_products.html">Filter coffee</a></li>
-                    <li><a href="turkish_coffee_products.html">Turkish coffee</a></li>
-                    <li><a href="espresso_products.html">Espresso</a></li>
-                    <li><a href="hot_chocolate_products.html">Hot chocolate</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Coffee Machines</li>
-                    <li><a href="filter_coffee_machines_products.html">Filter coffee Machine</a></li>
-                    <li><a href="turkish_coffee_machine.html">Turkish coffee machine</a></li>
-                    <li><a href="espresso_coffee_machine.html">Espresso machine</a></li>
-                  </ul>
-                
-                </li>
+<div class="masthead">
+  <h3 class="muted" style="color:white">Welcome to Coffee House</h3>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li class="active"><a href="index.php">Home</a></li>
+          
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Categories
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Coffees</li>
+              <li><a href="filter_coffee_products.php">filter coffee</a></li>
+              <li><a href="turkish_coffee_products.php">turkish coffee</a></li>
+              <li><a href="espresso_products.php">espresso</a></li>
+              <li><a href="hot_chocolate_products.php">hot chocolate</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Coffee Machines</li>
+              <li><a href="filter_coffee_machines_products.php">filter coffee Machine</a></li>
+              <li><a href="turkish_coffee_machine.php">turkish coffee machine</a></li>
+              <li><a href="espresso_coffee_machine.php">espresso machine</a></li>
+              <li><a href="hot_chocolate_products.php">hot chocolate machine</a></li>
+            </ul>
+          
+          </li>
 
-                <li><a href="status.html">My Account</a></li>
-                <li><a href="new.html">My Cart</a></li>
-                <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="status.html">My Account</a></li>
+          <li><a href="new.php">My Cart</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
 
-              </ul>
-            </div>
-          </div>
-        </div><!-- /.navbar -->
-      </div>  
+        </ul>
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
 
       <div class="card">
         
