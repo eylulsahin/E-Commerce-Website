@@ -155,6 +155,8 @@ while($id_rows = mysqli_fetch_assoc($myresult))
 <button>DELETE</button>
 </form>
 
+<h3><a style="color:white" href="checkout.php">Click to Checkout</a></h3>
+
 
   </body>
 </html>

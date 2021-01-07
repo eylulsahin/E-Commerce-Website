@@ -95,14 +95,8 @@ if (!isset($_SESSION['loggedin'])) {
         </div><!-- /.navbar -->
       </div>
 
-      <h4 style="color:white">Welcome back, <?=$_SESSION['name']?>!</h4>
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h3 style="color:white">Take a break, drink some coffee :)</h3>
-      
-        <a class="btn btn-large btn-success" href="login.html">Sign in</a>
-        <a class="btn btn-large btn-success" href="register.html">Sign up</a>
-      </div>
+      <h4 style="color:white">Your order is accepted, <?=$_SESSION['name']?>!</h4>
+      <h4 style="color:white">Order number is: 89034167403</h4>
 
     </div> <!-- /container -->
   
