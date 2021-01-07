@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
   <head>
 
     <style>
@@ -41,7 +45,7 @@
   <div class="container" >
 
 <div class="masthead">
-  <h3 class="muted" style="color:white">Welcome to Coffee House</h3>
+  <h3 class="muted" style="color:white">My Cart</h3>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
@@ -81,25 +85,76 @@
 
 
 
+<div class="w3-container">
+  <h3 style="color:white">Cart</h3>
+
+  <table class="w3-table-all w3-card-4">
+
+  <tr>
+<th style="color:blue">Product name</th>
+<th style="color:blue">Unit Cost</th>
+<th style="color:blue">Quantity</th>
+
+  </tr>
+
 <?php
 
 include "config.php";
 
-$sql_statement = "SELECT * FROM messages";
+$sql_statement = "SELECT * FROM BASKET";
 
 $result = mysqli_query($db, $sql_statement);
+
+$totalcost = 0;
 
 while($row = mysqli_fetch_assoc($result))
 {
   $customer_id = $row['customer_id'];
   $quantity = $row['quantity'];
-  $prdouct_id = $row['product_id'];
-  $price = $row['price'];
-	$name = $row['name'];
+  $product_id = $row['product_id'];
+  $price = $row['cost'];
+  $name = $row['product_name'];
+  
+  $totalcost = $totalcost + ($price * $quantity ) ;
 
+  echo "<tr>" . "<th>" . $name . "</th>" . "<th>" . $price . "</th>"."<th>" . $quantity . "</th>" ;
+}
+
+echo "<tr>" . "<th>" . "------------------------------------------------------------------------------------" .  "</th>" ."<th>" . "------------------------------" .  "</th>"  ."<th>" . "------------------------------" .  "</th>";
+
+echo "<tr>" . "<th>" . "Total Cost:" .  "</th>" . "<th>" . $totalcost .  "</th>"   ;
+
+?>
+
+  </table>
+
+</div>
+
+<form action="sendadmin.php" method="POST">
+<select name= "product_id" >
+
+<?php
+
+$sql_command = "SELECT * FROM BASKET";
+
+$myresult = mysqli_query($db, $sql_command);
+
+while($id_rows = mysqli_fetch_assoc($myresult))
+{
+  $name = $id_rows['product_name'];
+  $id = $id_rows['product_id'];
+
+  echo "<option value=$id>".$name."</option>";
+  
+  echo $id;
 }
 
 ?>
-  
+</select>
+
+<button>DELETE</button>
+</form>
+
+
   </body>
 </html>
