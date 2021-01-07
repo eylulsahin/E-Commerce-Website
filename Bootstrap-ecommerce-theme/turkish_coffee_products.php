@@ -3,6 +3,10 @@
 include "config.php";
 
 ?>
+<?php
+session_start();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +79,7 @@ include "config.php";
 
 <div class="masthead">
   <h3 class="muted" style="color:white">Welcome to Coffee House</h3>
+  <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">

@@ -1,11 +1,11 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
+
 session_start();
-// If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
-	exit;
+  $_SESSION['name'] = "guest";
+  $_SESSION['id']=-1;
 }
+
 ?>
 
 
@@ -72,20 +72,19 @@ if (!isset($_SESSION['loggedin'])) {
 
                   <ul class="dropdown-menu">
                     <li class="nav-header">Coffees</li>
-                    <li><a href="filter_coffee_products.php">filter coffee</a></li>
-                    <li><a href="turkish_coffee_products.php">turkish coffee</a></li>
-                    <li><a href="espresso_products.php">espresso</a></li>
-                    <li><a href="hot_chocolate_products.php">hot chocolate</a></li>
+                    <li><a href="filter_coffee_products.php">Filter coffee</a></li>
+                    <li><a href="turkish_coffee_products.php">Turkish coffee</a></li>
+                    <li><a href="espresso_products.php">Espresso</a></li>
+                    <li><a href="hot_chocolate_products.php">Hot chocolate</a></li>
                     <li class="divider"></li>
                     <li class="nav-header">Coffee Machines</li>
-                    <li><a href="filter_coffee_machines_products.php">filter coffee Machine</a></li>
-                    <li><a href="turkish_coffee_machine.php">turkish coffee machine</a></li>
-                    <li><a href="espresso_coffee_machine.php">espresso machine</a></li>
-                    <li><a href="hot_chocolate_products.php">hot chocolate machine</a></li>
+                    <li><a href="filter_coffee_machines_products.php">Filter coffee Machine</a></li>
+                    <li><a href="turkish_coffee_machine.php">Turkish coffee machine</a></li>
+                    <li><a href="espresso_coffee_machine.php">Espresso machine</a></li>
                   </ul>
                 
                 </li>
-                <li><a href="status.html">My Account</a></li>
+                <li><a href="profile.php">My Account</a></li>
                 <li><a href="new.php">My Cart</a></li>
                 <li><a href="contactus.html">Contact Us</a></li>
                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
@@ -95,7 +94,7 @@ if (!isset($_SESSION['loggedin'])) {
         </div><!-- /.navbar -->
       </div>
 
-      <h4 style="color:white">Welcome back, <?=$_SESSION['name']?>!</h4>
+      <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h3 style="color:white">Take a break, drink some coffee :)</h3>

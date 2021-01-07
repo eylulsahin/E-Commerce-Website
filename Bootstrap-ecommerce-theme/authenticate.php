@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 // Change this to your connection info.
@@ -40,6 +41,7 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM USERS WHERE username = 
 			$_SESSION['id'] = $user_id;
 			echo 'Welcome ' . $_SESSION['id'] . '!';
 			header('Location: index.php');
+			
 		} else {
 			// Incorrect password
 			echo 'Incorrect username and/or password!';
