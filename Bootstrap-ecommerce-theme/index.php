@@ -84,7 +84,7 @@ if (!isset($_SESSION['loggedin'])) {
                   </ul>
                 
                 </li>
-                <li><a href="profile.php">My Account</a></li>
+                <li><a href="status.php">My Account</a></li>
                 <li><a href="new.php">My Cart</a></li>
                 <li><a href="contactus.html">Contact Us</a></li>
                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>

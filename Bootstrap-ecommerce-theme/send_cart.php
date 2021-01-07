@@ -14,6 +14,10 @@ if ($quantity == 0){
 	$quantity  = 1;
 }
 
+if ($quantity < 0){
+	$quantity  = 1;
+}
+
 
 
 $query = "SELECT COUNT(*) AS C FROM BASKET WHERE BASKET.customer_id = $customer_id AND BASKET.product_id IN ($product_id)";

@@ -70,42 +70,42 @@ session_start();
 
   <body>
 
+
   <div class="container" >
 
 <div class="masthead">
-  <h3 class="muted" style="color:white">Welcome to Coffee House</h3>
-  <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
+  <h3 class="muted" style="color:white">Coffee House</h3>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
+
+
         <ul class="nav">
           <li class="active"><a href="index.php">Home</a></li>
-          
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               Categories
               <b class="caret"></b>
             </a>
+
             <ul class="dropdown-menu">
               <li class="nav-header">Coffees</li>
-              <li><a href="filter_coffee_products.php">filter coffee</a></li>
-              <li><a href="turkish_coffee_products.php">turkish coffee</a></li>
-              <li><a href="espresso_products.php">espresso</a></li>
-              <li><a href="hot_chocolate_products.php">hot chocolate</a></li>
+              <li><a href="filter_coffee_products.php">Filter coffee</a></li>
+              <li><a href="turkish_coffee_products.php">Turkish coffee</a></li>
+              <li><a href="espresso_products.php">Espresso</a></li>
+              <li><a href="hot_chocolate_products.php">Hot chocolate</a></li>
               <li class="divider"></li>
               <li class="nav-header">Coffee Machines</li>
-              <li><a href="filter_coffee_machines_products.php">filter coffee Machine</a></li>
-              <li><a href="turkish_coffee_machine.php">turkish coffee machine</a></li>
-              <li><a href="espresso_coffee_machine.php">espresso machine</a></li>
-              <li><a href="hot_chocolate_products.php">hot chocolate machine</a></li>
+              <li><a href="filter_coffee_machines_products.php">Filter coffee Machine</a></li>
+              <li><a href="turkish_coffee_machine.php">Turkish coffee machine</a></li>
+              <li><a href="espresso_coffee_machine.php">Espresso machine</a></li>
             </ul>
           
           </li>
-
-          <li><a href="status.html">My Account</a></li>
+          <li><a href="status.php">My Account</a></li>
           <li><a href="new.php">My Cart</a></li>
           <li><a href="contactus.html">Contact Us</a></li>
-
+          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
         </ul>
       </div>
     </div>
@@ -121,7 +121,7 @@ session_start();
   <input type="hidden" id="fname" name="name" value="Turkish Coffee Machine" placeholder="Type your name"><br>
   <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
   <input type="hidden" id="fname" name="product_id" value="15" placeholder="Type your name"><br>
-  <input type="number" id="fname" name="quantity" placeholder="Enter Quantity"><br>
+  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
   <input type="hidden" id="fname" name="price" value="119" placeholder="Type your name"><br>
 	<button class="button2">Add to Cart</button>
 </form>    
