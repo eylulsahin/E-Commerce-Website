@@ -8,36 +8,36 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
-            $.fn.stars = function() {
-    		return $(this).each(function() {
-		        // Get the value
-		        var val = parseFloat($(this).html());
-		        // Make sure that the value is in 0 - 5 range, multiply to get width
-		        var size = Math.max(0, (Math.min(5, val))) * 16;
-		        // Create stars holder
-		        var $span = $('<span />').width(size);
-		        // Replace the numerical value with stars
-		        $(this).html($span);
-    });
-    	$(function() {
-	    	$('span.stars').stars();
-		});
-        </script>
-
+<script src="https://d3js.org/d3.v6.min.js"></script>
 	<style>
-		span.stars, span.stars span {
-	    display: block;
-	    background: url(stars.png) 0 -16px repeat-x;
-	    width: 80px;
-	    height: 16px;
-		}
+		.rating {
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  color: #888888;
+  font-size: 25px;
+  height: 25px;
+  width: auto;
+  margin: 0;
+  position: relative;
+  padding: 0;
+}
 
-		span.stars span {
-		    background-position: 0 0;
-		}
+.rating-upper {
+  color: #c52b2f;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.rating-lower {
+  padding: 0;
+  display: flex;
+  z-index: 0;
+}
 
     .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -155,55 +155,86 @@ session_start();
 
 
 <?php
-                if(($_SESSION['pm']!=0)) {
-                 ?>
-                 <button class="button2" > EDIT PRODUCTS</button> 
-                <?php
-                    }
-                  ?>
-
-      <!-- Example row of columns -->
-      <?php
-
       include "config.php";
-
+                if(($_SESSION['pm']!=0)) {
+                 echo '<button class="button2" > EDIT PRODUCTS</button>'; 
+                }
       $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";
 
       $result = mysqli_query($db, $sql_statement);
-
+      $count=1;
       while($row = mysqli_fetch_assoc($result))
-      {
+      { 
+
         $name = $row['name'];
         $price = $row['price'];
         $image = $row['image_path'];
         $category = $row['category_name'];
         $rating = $row['rating'];
-	    
+	     
 
-        echo "	<div class=\"row-fluid\">
-        			<ul class=\"thumbnails\">
-        				<li class=\"span3\">
-        					<div class=\"card\">
-					         	<img alt=\"200x200\" src=\"". $image. "\">
-					         	<div class=\"caption\">".
-						         	"<h3>" .$category  ."</h3>". 
-						         	"<p>" . $name . "</p>" .
-						         	"<p>" . $price . "$"."</p>". 
-						         	"<p> <span class=\"stars\"". $rating. "</span> </p>".
-						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
-					         	"</div>".
-				         	"</div>".
-	        			"</li>";
+        echo "<div class=\"row-fluid\">
+          			<ul class=\"thumbnails\">
+          				<li class=\"span3\">
+          					<div class=\"card\">
+  					         	<img alt=\"200x200\" src=\"". $image. "\">
+  					         	<div class=\"caption\">".
+  						         	"<h3>" .$category  ."</h3>". 
+  						         	"<p>" . $name . "</p>" .
+  						         	"<p>" . $price . "$"."</p>". 
+                        '<div class="rating">
+                          <input id="rating_txt'. $count .'" type="hidden" value="'. $rating.' ">
+                          <div class="rating-upper" id="rating'. $count .'" style="width: 0%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="rating-lower">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          </div>
+                          </div>'.
+  						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
+  					         	"</div>".
+  				         	"</li>";
+                    "</ul>".
+                "</div>";
+
+                $count = $count+1;
       }
-      "</ul>".
-	  "</div>";
+      echo '<input id="mycount" type="hidden" value="'. $count.' ">'
 
       ?>
+<script>
+      $(document).ready(function(){
+        mycount = $("#mycount").val();
+        console.log(mycount);
 
+        for(i=0;i<mycount;i++)
+        {
+          var element = $('#rating' + i);
+          //console.log(element);
+          element2 = $('#rating_txt' + i);
+          console.log(element2.val());
+          element.css({
+                width: (element2.val())*20 + "%"
+            });
+        }
+            
+        });
+
+
+        </script>
       <hr>
 
     </div> 
 
-
   </body>
+
 </html>
