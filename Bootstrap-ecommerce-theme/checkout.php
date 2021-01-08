@@ -5,6 +5,8 @@ include "config.php";
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -236,7 +238,12 @@ span.price {
       <form action="after_checkout.php">
       
         <div class="row">
-          <div class="col-50">
+
+                <?php
+                if(!isset($_SESSION['loggedin'])) {
+                 ?>
+                 
+                   <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
@@ -258,6 +265,14 @@ span.price {
               </div>
             </div>
           </div>
+
+
+                <?php
+                    }
+                  ?> 
+        
+
+
 
           <div class="col-50">
             <h3>Payment</h3>
@@ -333,3 +348,5 @@ span.price {
 
 </body>
 </html>
+
+

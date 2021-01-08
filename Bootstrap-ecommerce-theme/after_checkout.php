@@ -130,6 +130,64 @@ include "config.php";
 
 <?php 
 
+
+//basketten aldıklarını ->carta insert et
+
+$a = $_SESSION['id'];
+
+$sql_statement = "SELECT * FROM BASKET B WHERE B.customer_id = $a ";
+
+$result = mysqli_query($db, $sql_statement);
+
+$total_cost= 0;
+$total_quantity= 0;
+$product_id = 124131;
+
+while($row = mysqli_fetch_assoc($result))
+{ 
+
+  $quantity = $row['quantity'];
+  $cost = $row['cost'];
+  $product_id = $row['product_id'];
+  $total_cost = $cost * $quantity ;
+  $total_quantity = $total_quantity + $quantity;
+
+}
+
+$query = "INSERT INTO CART(customer_id, product_id,total_cost ,quantity)	
+					VALUES ('$a ','  $product_id', '$total_cost','$total_quantity')";
+	
+	mysqli_query($db, $query);
+
+
+
+
+//carttan aldıklarını ->ordera insert et
+
+$query2 = "SELECT * FROM CART C WHERE C.customer_id = $a ";
+
+$result2 = mysqli_query($db, $query2);
+
+$timezone = date_default_timezone_get();
+
+while($row = mysqli_fetch_assoc($result2))
+{ 
+
+  $cart_id = $row['cart_id'];
+  $customer_id = $row['customer_id'];
+
+
+	$query3 = "INSERT INTO ORDERS(time, amount, status ,cart_id, customer_id, sm_id)	
+					VALUES ('$timezone ','1', 'Preparing', '$cart_id','$customer_id' , '14')";
+  
+  
+	mysqli_query($db, $query3);
+
+
+}
+
+
+//delete basket
 $a = $_SESSION['id'];
 
 $sql_command = "DELETE FROM BASKET WHERE customer_id = $a ";

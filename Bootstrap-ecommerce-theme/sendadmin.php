@@ -2,8 +2,6 @@
 
 include "config.php";
 
-session_start();
-
 if (isset($_POST['product_id'])){
 
 $id = $_POST['product_id'];

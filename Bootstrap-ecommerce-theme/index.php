@@ -114,10 +114,6 @@ if (!isset($_SESSION['loggedin'])) {
                   ?>
                   
 
-
-
-
-
                 <?php
                 if(isset($_SESSION['loggedin'])) {
                  ?>
