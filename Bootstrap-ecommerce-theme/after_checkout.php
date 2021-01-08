@@ -149,7 +149,7 @@ while($row = mysqli_fetch_assoc($result))
   $quantity = $row['quantity'];
   $cost = $row['cost'];
   $product_id = $row['product_id'];
-  $total_cost = $cost * $quantity ;
+  $total_cost = $total_cost + $cost * $quantity ;
   $total_quantity = $total_quantity + $quantity;
 
 }
@@ -170,21 +170,22 @@ $result2 = mysqli_query($db, $query2);
 
 $timezone = date_default_timezone_get();
 
+$cart_id = 110;
+$customer_id  = 110;
+
 while($row = mysqli_fetch_assoc($result2))
 { 
 
   $cart_id = $row['cart_id'];
   $customer_id = $row['customer_id'];
 
-
-	$query3 = "INSERT INTO ORDERS(time, amount, status ,cart_id, customer_id, sm_id)	
-					VALUES ('$timezone ','1', 'Preparing', '$cart_id','$customer_id' , '14')";
-  
-  
-	mysqli_query($db, $query3);
-
-
 }
+
+$query3 = "INSERT INTO ORDERS(time, amount, status ,cart_id, customer_id, sm_id)	
+VALUES ('$timezone ','1', 'Preparing', '$cart_id','$customer_id' , '14')";
+
+
+mysqli_query($db, $query3);
 
 
 //delete basket
