@@ -1,6 +1,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $.fn.stars = function() {
+    		return $(this).each(function() {
+		        // Get the value
+		        var val = parseFloat($(this).html());
+		        // Make sure that the value is in 0 - 5 range, multiply to get width
+		        var size = Math.max(0, (Math.min(5, val))) * 16;
+		        // Create stars holder
+		        var $span = $('<span />').width(size);
+		        // Replace the numerical value with stars
+		        $(this).html($span);
+    });
+    	$(function() {
+	    	$('span.stars').stars();
+		});
+        </script>
+
+	<style>
+		span.stars, span.stars span {
+	    display: block;
+	    background: url(stars.png) 0 -16px repeat-x;
+	    width: 80px;
+	    height: 16px;
+		}
+
+		span.stars span {
+		    background-position: 0 0;
+		}
+		</style>
   <head>
     <meta charset="utf-8">
     <title>Bootstrap e-Commerce Theme</title>
@@ -70,31 +100,41 @@
       </div>
 
       <!-- Example row of columns -->
-      <div class="row-fluid">
-        <ul class="thumbnails">
-          <li class="span3">
-            <div class="thumbnail">
-              <img alt="230x200" src="images/hot-c-50.png">
-              <div class="caption">
-                <h3>Hot Chocolate</h3>
-                <p>Chocolate with Plant Protein 50 grams</p>
-                <p><a href="send_cart.php" class="btn btn-primary">Add To Cart</a></p>
-              </div>	
-            </div>
-          </li>
-          <!-- 
-          <li class="span3">
-            <div class="thumbnail">
-              <img alt="230x200" src="http://placehold.it/230x200">
-              <div class="caption">
-                <h3>Product D</h3>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="view.html" class="btn">View</a></p>
-              </div>
-            </div>
-          </li>  -->
-        </ul>
-      </div>
+      <?php
+
+      include "config.php";
+
+      $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";
+
+      $result = mysqli_query($db, $sql_statement);
+
+      while($row = mysqli_fetch_assoc($result))
+      {
+        $name = $row['name'];
+        $price = $row['price'];
+        $image = $row['image_path'];
+        $category = $row['category_name'];
+        $rating = $row['rating'];
+	    
+
+        echo "	<div class=\"row-fluid\">
+        			<ul class=\"thumbnails\">
+        				<li class=\"span3\">
+        					<div class=\"thumbnail\">
+					         	<img alt=\"230x200\" src=\"". $image. "\">
+					         	<div class=\"caption\">".
+						         	"<h3>" . $category  ."</h3>". 
+						         	"<p>" . $name . "</p>" .
+						         	"<p> <span class=\"stars\"". $rating. "</span> </p>".
+						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
+					         	"</div>".
+				         	"</div>".
+	        			"</li>".
+	         		"</ul>".
+	         	"</div>";
+      }
+
+      ?>
 
       <hr>
 
@@ -102,26 +142,8 @@
         <p>&copy; Company 2021</p>
       </div>
 
-    </div> <!-- /container -->
-    <?php
+    </div> 
 
-      include "config.php";
-
-      $sql_statement = "SELECT * FROM PRODUCT";
-
-      $result = mysqli_query($db, $sql_statement);
-
-      while($row = mysqli_fetch_assoc($result))
-      {
-        $id = $row['product_id'];
-        $price = $row['price'];
-        $image = $row['image_path'];
-        $category = $row['category_id'];
-
-        echo "<td class=\"thumbnails\"" ."<h3>" . $category . "</h3>". "<p>" . $id . "</p>" . "<p>" ."</p>" ."<ul";
-      }
-
-      ?>
 
   </body>
 </html>
