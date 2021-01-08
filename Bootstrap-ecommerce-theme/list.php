@@ -8,6 +8,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $.fn.stars = function() {
@@ -165,16 +166,17 @@ session_start();
         					<div class=\"thumbnail\">
 					         	<img alt=\"230x200\" src=\"". $image. "\">
 					         	<div class=\"caption\">".
-						         	"<h3>" . $category  ."</h3>". 
+						         	"<h3>" .$category  ."</h3>". 
 						         	"<p>" . $name . "</p>" .
+						         	"<p>" . $rating . "$"."</p>". 
 						         	"<p> <span class=\"stars\"". $rating. "</span> </p>".
 						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
 					         	"</div>".
 				         	"</div>".
-	        			"</li>".
-	         		"</ul>".
-	         	"</div>";
+	        			"</li>";
       }
+      "</ul>".
+	  "</div>";
 
       ?>
 
