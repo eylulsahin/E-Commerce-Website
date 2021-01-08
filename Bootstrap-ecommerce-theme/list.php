@@ -38,6 +38,17 @@ session_start();
 		span.stars span {
 		    background-position: 0 0;
 		}
+
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color: white;
+}
+
+
 		</style>
   <head>
   <style>
@@ -142,6 +153,15 @@ session_start();
   </div><!-- /.navbar -->
 </div>
 
+
+<?php
+                if(($_SESSION['pm']!=0)) {
+                 ?>
+                 <button class="button2" > EDIT PRODUCTS</button> 
+                <?php
+                    }
+                  ?>
+
       <!-- Example row of columns -->
       <?php
 
@@ -163,12 +183,12 @@ session_start();
         echo "	<div class=\"row-fluid\">
         			<ul class=\"thumbnails\">
         				<li class=\"span3\">
-        					<div class=\"thumbnail\">
-					         	<img alt=\"230x200\" src=\"". $image. "\">
+        					<div class=\"card\">
+					         	<img alt=\"200x200\" src=\"". $image. "\">
 					         	<div class=\"caption\">".
 						         	"<h3>" .$category  ."</h3>". 
 						         	"<p>" . $name . "</p>" .
-						         	"<p>" . $rating . "$"."</p>". 
+						         	"<p>" . $price . "$"."</p>". 
 						         	"<p> <span class=\"stars\"". $rating. "</span> </p>".
 						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
 					         	"</div>".
@@ -181,10 +201,6 @@ session_start();
       ?>
 
       <hr>
-
-      <div class="footer">
-        <p>&copy; Company 2021</p>
-      </div>
 
     </div> 
 
