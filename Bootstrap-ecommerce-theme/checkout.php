@@ -325,7 +325,7 @@ span.price {
   
           </table>
 
-      <p>Total <span class="price" style="color:black"><?php echo $total_cost; ?></span></p>
+      <p>Total Cost: <span class="price" style="color:black"><?php echo $total_cost; ?></span></p>
     </div>
   </div>
 </div>
