@@ -1,5 +1,6 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
+
+
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
@@ -15,32 +16,15 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, first_name,last_name FROM USERS WHERE user_id = ?');
+$stmt = $con->prepare('SELECT order_id, time,amount, status,cart_id,customer_id FROM ORDERS WHERE sm_id = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $first_name,$last_name);
+$stmt->bind_result($order_id, $time,$amount,$status,$cart_id,$customer_id);
 $stmt->fetch();
 $stmt->close();
 
 
-//SEN YAZDIN
-$stmt2 = $con->prepare('SELECT order_id, time,amount,status FROM ORDERS WHERE customer_id = ?');
-// In this case we can use the account ID to get the account info.
-$stmt2->bind_param('i', $_SESSION['id']);
-$stmt2->execute();
-$stmt2->bind_result($order_id, $time,$amount,$status);
-$stmt2->fetch();
-$stmt2->close();
-
-//SEN YAZDIN
-$stmt2 = $con->prepare('SELECT phone, address,email FROM CUSTOMER WHERE customer_id = ?');
-// In this case we can use the account ID to get the account info.
-$stmt2->bind_param('i', $_SESSION['id']);
-$stmt2->execute();
-$stmt2->bind_result($phone, $address,$email);
-$stmt2->fetch();
-$stmt2->close();
 
 ?>
 
@@ -147,7 +131,7 @@ $stmt2->close();
                  <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                 <?php
                     }
-                  ?> 
+                  ?>
         </ul>
       </div>
     </div>
@@ -162,64 +146,39 @@ $stmt2->close();
         <div class="row-fluid">
             <div class="block">
                 <div class="navbar navbar-inner block-header">
-                    <div style="color:black" class="muted pull-left"><b>ACCOUNT INFORMATION</b></div>        
+                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div>  
+                    <button class="button2" > EDIT ORDERS</button>      
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
 
                     <div>
-				<strong>Your account details are below</strong>
+                <strong>Orders You Are Allowed to Track  </strong>
+                
+                <br></br>
 				<table>
-					<tr>
-						<td>Username:</td>
-						<td><?=$_SESSION['name']?></td>
+                    <tr>
+						<th>Order_id</th>
+                        <th>Time</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Cart id</th>
+                        <th>Customer id</th>
+                     </tr>
+                     <tr>
+					  	<td><?=$order_id?></td>
+                        <td><?=$time?></td>
+                        <td><?=$amount?></td>
+                        <td><?=$status?></td>
+                        <td><?=$cart_id?></td>
+                        <td><?=$customer_id?></td>
 					</tr>
-					<tr>
-						<td>Password:</td>
-						<td><?=$password?>   <a  href="login.html">  ->   Change my password</a>   </td> 
-					</tr>
-					<tr>
-						<td>First Name:</td>
-						<td><?=$first_name?></td>
-          </tr>
-          <tr>
-						<td>Last Name:</td>
-						<td><?=$last_name?></td>
-          </tr>
-          <tr>
-						<td>Email:</td>
-						<td><?=$email?></td>
-          </tr>
-          <tr>
-						<td>Address:</td>
-						<td><?=$address?></td>
-          </tr>
-          <tr>
-						<td>Phone:</td>
-						<td><?=$phone?></td>
-          </tr>
 
         </table>
             </div>
             <div>
             <br> </br>
-				<strong>Your Orders are below DEVAMET</strong>
-				<table>
-					<tr>
-						<th>Order_id</th>
-              <th>Time</th>
-              <th>Amount</th>
-              <th>Status</th>
-          </tr>
-          
-					<tr>
-					  	<td><?=$order_id?></td>
-              <td><?=$time?></td>
-              <td><?=$amount?></td>
-              <td><?=$status?></td>
-					</tr>
-             
-          </table>
+		
 
       </div>
       

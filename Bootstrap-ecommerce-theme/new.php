@@ -89,7 +89,7 @@ session_start();
                     }
                   ?> 
                 <li><a href="new.php">My Cart</a></li>
-                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="list.php">All Products</a></li>
                 <?php
                 if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
                  ?>
