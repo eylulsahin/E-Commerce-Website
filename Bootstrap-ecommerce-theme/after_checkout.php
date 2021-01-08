@@ -11,13 +11,6 @@ $sql_command = "DELETE FROM BASKET WHERE customer_id = $a ";
 
 $myresult = mysqli_query($db, $sql_command);
 
-
-
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.php');
-	exit;
-}
 ?>
 
 
@@ -136,3 +129,6 @@ if (!isset($_SESSION['loggedin'])) {
   
   </body>
 </html>
+
+
+

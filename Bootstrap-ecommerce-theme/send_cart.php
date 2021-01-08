@@ -4,7 +4,7 @@ include "config.php";
 
 if (isset($_POST['name'])){
 
-$customer_id = $_POST['customer_id'];
+$customer_id = $_SESSION['id'];
 $quantity = $_POST['quantity'];
 $product_id = $_POST['product_id'];
 $price = $_POST['price'];
