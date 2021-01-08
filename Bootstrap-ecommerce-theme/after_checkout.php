@@ -1,16 +1,11 @@
 <?php
-
-include "config.php";
-
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
-
-$a = $_SESSION['id'];
-
-$sql_command = "DELETE FROM BASKET WHERE customer_id = $a ";
-
-$myresult = mysqli_query($db, $sql_command);
-
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: index.php');
+	exit;
+}
 ?>
 
 
@@ -98,7 +93,6 @@ $myresult = mysqli_query($db, $sql_command);
                     }
                   ?> 
                 <li><a href="new.php">My Cart</a></li>
-                <li><a href="list.php">All Products</a></li>
                 <?php
                 if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
                  ?>
@@ -106,8 +100,13 @@ $myresult = mysqli_query($db, $sql_command);
                 <?php
                     }
                   ?> 
-
-
+                  <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
+                 ?>
+                 <li><a href="pm_product.php">Admin Products</a></li>
+                <?php
+                    }
+                  ?> 
 
                 <?php
                 if(isset($_SESSION['loggedin'])) {
@@ -129,6 +128,3 @@ $myresult = mysqli_query($db, $sql_command);
   
   </body>
 </html>
-
-
-

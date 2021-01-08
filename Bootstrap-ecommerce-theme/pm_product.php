@@ -1,5 +1,20 @@
 <?php
+
+
 session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: index.php');
+	exit;
+}
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'coffeeshop';
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
 
 ?>
 
@@ -8,6 +23,11 @@ session_start();
 <html lang="en">
   <head>
 
+    <meta charset="utf-8">
+		<title>Profile Page</title>
+		<link href="style_login.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
     <style>
       body {
         background-image: url('./images/sign in:up alternative.png');
@@ -15,36 +35,20 @@ session_start();
         background-attachment: fixed;  
         background-size: cover;
       }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-      .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  background-color: white;
-}
-
-.price {
-  color: grey;
-  font-size: 22px;
-}
-
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-.card button:hover {
-  opacity: 0.7;
-}
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
       </style>
 
     <meta charset="utf-8">
@@ -69,14 +73,16 @@ session_start();
 <!--style="background-image: url('./images/sign in:up alternative.png');" background-size: cover;   background-repeat: no-repeat;
     background-attachment: fixed; -->
 
+
   <body>
+
 
 
   <div class="container" >
 
 <div class="masthead">
   <h3 class="muted" style="color:white">Coffee House</h3>
-  <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
+  <h4 style="color:white">Welcome <?=$_SESSION['name']?> ID: <?=$_SESSION['id']?>!</h4>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
@@ -114,21 +120,19 @@ session_start();
                 <li><a href="new.php">My Cart</a></li>
                 <li><a href="list.php">All Products</a></li>
                 <?php
-                if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
-                 ?>
-                 <li><a href="sm_order.php">Admin Orders</a></li>
-                <?php
-                    }
-                  ?> 
-                  <?php
                 if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
                  ?>
                  <li><a href="pm_product.php">Admin Products</a></li>
                 <?php
                     }
                   ?> 
-
-
+                  <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
+                 ?>
+                 <li><a href="sm_order.php">Admin Orders</a></li>
+                <?php
+                    }
+                  ?> 
 
                 <?php
                 if(isset($_SESSION['loggedin'])) {
@@ -136,55 +140,80 @@ session_start();
                  <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                 <?php
                     }
-                  ?> 
+                  ?>
         </ul>
       </div>
     </div>
   </div><!-- /.navbar -->
 </div>
-
-      <div class="card">
-        
-        <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
-        <h2>Vanilla Flavoured Filter Coffee</h2>
-        <p class="price">$19</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Vanilla Flavoured Filter Coffee" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="8" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="19" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-  </form>    
       
-    
-        <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
-        <h2>Caramel Flavoured Filter Coffee</h2>
-        <p class="price">$19</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Caramel Flavoured Filter Coffee" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="9" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="19" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-  </form>  
+      
+      
+      </div>
 
 
-        <img src="https://cdnd.kahvedunyasi.com/product/250x250/13.300.2040.0001.png"  style="width:100%">
-        <h2>Hazelnut Flavoured Filter Coffee</h2>
-        <p class="price">$25</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Hazelnut Flavoured Filter Coffee" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="10" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="25" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-  </form>  
+        <div class="row-fluid">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div>  
+                    <button class="button2" > EDIT PRODUCTS</button>      
+                </div>
+                <div class="block-content collapse in">
+                    <div class="span12">
 
-        
+                    <div>
+                <strong>Products You Are Allowed to Edit  </strong>
+                
+                <br></br>
+				<table>
+                    <tr>
+                      <th>PM ID</th>
+						            <th>Category ID</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Rating</th>
+                        <th>Model </th>
+                        <th>Price </th>
+                     </tr>
+      <?php
+
+          include "config.php";
+          $b= $_SESSION['id'];
+
+          //$sql_statement = "SELECT * FROM ORDERS WHERE customer_id = $b ";
+          $sql_statement= "SELECT * FROM CATEGORY C, PRODUCT P WHERE C.category_id=P.category_id AND C.pm_id= $b";
+          $result = mysqli_query($db, $sql_statement);
+
+          while($row = mysqli_fetch_assoc($result))
+        {
+           $pm_id = $row['pm_id'];
+           $category_id = $row['category_id'];
+           $product_id = $row['product_id'];
+           $name = $row['name'];
+           $rating = $row['rating'];
+           $model = $row['model'];
+           $price = $row['price'];
+          echo  "<tr>".
+          "<th>". $pm_id ."</th>".
+            "<th>". $category_id ."</th>".
+          "<th>". $product_id . "</th>".
+          "<th>". $name ."</th>".
+          "<th>". $rating ."</th>".
+          "<th>". $model ."</th>".
+          "<th>". $price ."</th>".
+          "</tr>";
+      }
+  ?>
+        </table>
+            </div>
+            <div>
+            <br> </br>
+		
+
       </div>
       
+    
+      </div>
+
   </body>
 </html>

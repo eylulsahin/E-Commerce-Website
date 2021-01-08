@@ -152,6 +152,13 @@ $stmt2->close();
                 <?php
                     }
                   ?> 
+                  <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
+                 ?>
+                 <li><a href="pm_product.php">Admin Products</a></li>
+                <?php
+                    }
+                  ?> 
 
 
 
@@ -176,7 +183,8 @@ $stmt2->close();
         <div class="row-fluid">
             <div class="block">
                 <div class="navbar navbar-inner block-header">
-                    <div style="color:black" class="muted pull-left"><b>ACCOUNT INFORMATION</b></div>        
+                    <div style="color:black" class="muted pull-left"><b>ACCOUNT INFORMATION</b></div> 
+                    <button class="button2" > EDIT MY INFORMATION</button>          
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
@@ -190,7 +198,7 @@ $stmt2->close();
 					</tr>
 					<tr>
 						<td>Password:</td>
-						<td><?=$password?>   <a  href="login.html">  ->   Change my password</a>   </td> 
+						<td><?=$password?>   </td> 
 					</tr>
 					<tr>
 						<td>First Name:</td>
@@ -215,7 +223,7 @@ $stmt2->close();
 
         </table>
             <br> </br>
-				<strong>Your Orders are below DEVAMET</strong>
+				<strong>Your Orders are below </strong>
 				<table>
 					<tr>
 						  <th>Order Number</th>

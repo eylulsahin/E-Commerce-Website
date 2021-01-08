@@ -45,6 +45,20 @@ $stmt->close();
         background-attachment: fixed;  
         background-size: cover;
       }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
       </style>
 
     <meta charset="utf-8">
@@ -78,7 +92,7 @@ $stmt->close();
 
 <div class="masthead">
   <h3 class="muted" style="color:white">Coffee House</h3>
-  <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
+  <h4 style="color:white">Welcome <?=$_SESSION['name']?> ID: <?=$_SESSION['id']?>!</h4>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
@@ -122,6 +136,13 @@ $stmt->close();
                 <?php
                     }
                   ?> 
+                  <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
+                 ?>
+                 <li><a href="pm_product.php">Admin Products</a></li>
+                <?php
+                    }
+                  ?> 
 
 
 
@@ -158,21 +179,43 @@ $stmt->close();
                 <br></br>
 				<table>
                     <tr>
-						<th>Order_id</th>
+                    <th>SM ID</th>
+						<th>Order ID</th>
                         <th>Time</th>
                         <th>Amount</th>
                         <th>Status</th>
-                        <th>Cart id</th>
-                        <th>Customer id</th>
+                        <th>Cart ID</th>
+                        <th>Customer ID</th>
                      </tr>
-                     <tr>
-					  	<td><?=$order_id?></td>
-                        <td><?=$time?></td>
-                        <td><?=$amount?></td>
-                        <td><?=$status?></td>
-                        <td><?=$cart_id?></td>
-                        <td><?=$customer_id?></td>
-					</tr>
+            <?php
+
+              include "config.php";
+             $b= $_SESSION['id'];
+
+              //$sql_statement = "SELECT * FROM ORDERS WHERE customer_id = $b ";
+              $sql_statement= "SELECT * FROM ORDERS  WHERE sm_id= $b";
+              $result = mysqli_query($db, $sql_statement);
+
+            while($row = mysqli_fetch_assoc($result))
+            {
+                $sm_id = $row['sm_id'];
+                $order_id = $row['order_id'];
+                $time = $row['time'];
+                $amount = $row['amount'];
+                $status = $row['status'];
+                $cart_id = $row['cart_id'];
+                $customer_id = $row['customer_id'];
+                echo  "<tr>".
+                "<th>". $sm_id ."</th>".
+                  "<th>". $order_id ."</th>".
+                "<th>". $time . "</th>".
+                "<th>". $amount ."</th>".
+                "<th>". $status ."</th>".
+                "<th>". $cart_id ."</th>".
+                "<th>". $customer_id ."</th>".
+                "</tr>";
+                }             
+                ?>
 
         </table>
             </div>
