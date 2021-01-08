@@ -227,8 +227,9 @@ $stmt2->close();
 				   	<?php
 
                 include "config.php";
+                $b= $_SESSION['id'];
 
-                $sql_statement = "SELECT * FROM ORDERS";
+                $sql_statement = "SELECT * FROM ORDERS WHERE customer_id = $b ";
 
                 $result = mysqli_query($db, $sql_statement);
 
