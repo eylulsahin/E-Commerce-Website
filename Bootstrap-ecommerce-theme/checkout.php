@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include "config.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -281,13 +283,42 @@ span.price {
   </div>
   <div class="col-25">
     <div class="container2">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
+      
+      <table>
+					<tr>
+						  <th>Cost</th>
+              <th>Quantity</th>
+          </tr>
+          
+				   	<?php
+
+                include "config.php";
+
+                $sql_statement = "SELECT * FROM BASKET";
+
+                $result = mysqli_query($db, $sql_statement);
+
+                $total_cost = 0;
+
+
+                while($row = mysqli_fetch_assoc($result))
+                {
+                  $cost = $row['cost'];
+                  $quantity = $row['quantity'];
+                  
+                  $total_cost = $total_cost + ($cost*$quantity);
+                
+                  echo  "<tr>".
+                        "<th>". $cost . "</th>".
+                        "<th>". $quantity ."</th>".
+                        "</tr>";
+                }
+                ?>
+  
+          </table>
+
+      <p>Total <span class="price" style="color:black"><?php echo $total_cost; ?></span></p>
     </div>
   </div>
 </div>
