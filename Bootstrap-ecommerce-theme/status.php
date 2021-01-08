@@ -61,6 +61,20 @@ $stmt2->close();
         background-attachment: fixed;  
         background-size: cover;
       }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
       </style>
 
     <meta charset="utf-8">
@@ -200,31 +214,40 @@ $stmt2->close();
           </tr>
 
         </table>
-            </div>
-            <div>
             <br> </br>
 				<strong>Your Orders are below DEVAMET</strong>
 				<table>
 					<tr>
-						<th>Order_id</th>
+						  <th>Order Number</th>
               <th>Time</th>
               <th>Amount</th>
               <th>Status</th>
           </tr>
           
-					<tr>
-					  	<td><?=$order_id?></td>
-              <td><?=$time?></td>
-              <td><?=$amount?></td>
-              <td><?=$status?></td>
-					</tr>
-             
+				   	<?php
+
+                include "config.php";
+
+                $sql_statement = "SELECT * FROM ORDERS";
+
+                $result = mysqli_query($db, $sql_statement);
+
+                while($row = mysqli_fetch_assoc($result))
+                {
+                  $id = $row['order_id'];
+                  $time = $row['time'];
+                  $amount = $row['amount'];
+                  $status = $row['status'];
+                
+                  echo  "<tr>".
+                        "<th>". $id ."</th>".
+                        "<th>". $time . "</th>".
+                        "<th>". $amount ."</th>".
+                        "<th>". $status ."</th>".
+                        "</tr>";
+                }
+                ?>
+  
           </table>
-
-      </div>
-      
-    
-      </div>
-
   </body>
 </html>
