@@ -39,6 +39,16 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM USERS WHERE username = 
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['name'] = $_POST['username'];
 			$_SESSION['id'] = $user_id;
+	
+			if ($_SESSION['id']==12 || $_SESSION['id']==13 || $_SESSION['id']==14 )
+			{
+				$_SESSION['sm']=1;
+			}
+			if ($_SESSION['id']==5 ||$_SESSION['id']==7 || $_SESSION['id']==8 )
+			{
+				$_SESSION['pm']=1;
+			}
+
 			echo 'Welcome ' . $_SESSION['id'] . '!';
 			header('Location: index.php');
 			

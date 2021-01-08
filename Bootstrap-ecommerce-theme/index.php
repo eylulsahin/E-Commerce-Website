@@ -4,6 +4,8 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
   $_SESSION['name'] = "guest";
   $_SESSION['id']=-1;
+  $_SESSION['sm']=0;
+  $_SESSION['pm']=0;
 }
 
 ?>
@@ -83,11 +85,37 @@ if (!isset($_SESSION['loggedin'])) {
                     <li><a href="espresso_coffee_machine.php">Espresso machine</a></li>
                   </ul>
                 
+                
                 </li>
-                <li><a href="status.php">My Account</a></li>
+                <?php
+                if(isset($_SESSION['loggedin'])) {
+                 ?>
+                 <li><a href="status.php">My Account</a></li>
+                <?php
+                    }
+                  ?> 
                 <li><a href="new.php">My Cart</a></li>
                 <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
+                 ?>
+                 <li><a href="sm_order.php">Admin Orders</a></li>
+                <?php
+                    }
+                  ?> 
+
+
+
+                <?php
+                if(isset($_SESSION['loggedin'])) {
+                 ?>
+                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                <?php
+                    }
+                  ?> 
+                
+
+
               </ul>
             </div>
           </div>
@@ -97,10 +125,17 @@ if (!isset($_SESSION['loggedin'])) {
       <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h3 style="color:white">Take a break, drink some coffee :)</h3>
-      
-        <a class="btn btn-large btn-success" href="login.html">Sign in</a>
+        <h3 style="color:white">Take a break, drink some coffee :)</h3>     
+        
+        <?php
+    if(!isset($_SESSION['loggedin'])) {
+    ?>
+       <a class="btn btn-large btn-success" href="login.html">Sign in</a>
         <a class="btn btn-large btn-success" href="register.html">Sign up</a>
+    <?php
+    }
+?>
+
       </div>
 
     </div> <!-- /container -->

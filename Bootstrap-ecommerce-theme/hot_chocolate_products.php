@@ -79,6 +79,7 @@ session_start();
 
 <div class="masthead">
   <h3 class="muted" style="color:white">Coffee House</h3>
+  <h4 style="color:white">Welcome <?=$_SESSION['name']?>!</h4>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
@@ -106,10 +107,32 @@ session_start();
             </ul>
           
           </li>
-          <li><a href="status.php">My Account</a></li>
-          <li><a href="new.php">My Cart</a></li>
-          <li><a href="contactus.html">Contact Us</a></li>
-          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+          <?php
+                if(isset($_SESSION['loggedin'])) {
+                 ?>
+                 <li><a href="status.php">My Account</a></li>
+                <?php
+                    }
+                  ?> 
+                <li><a href="new.php">My Cart</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['sm']!=0)) {
+                 ?>
+                 <li><a href="sm_order.php">Admin Orders</a></li>
+                <?php
+                    }
+                  ?> 
+
+
+
+                <?php
+                if(isset($_SESSION['loggedin'])) {
+                 ?>
+                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                <?php
+                    }
+                  ?> 
         </ul>
       </div>
     </div>
