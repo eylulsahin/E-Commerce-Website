@@ -2,6 +2,8 @@
 
 include "config.php";
 
+session_start();
+
 if (isset($_POST['name'])){
 
 $customer_id = $_SESSION['id'];
