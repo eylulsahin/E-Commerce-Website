@@ -168,7 +168,7 @@ $query2 = "SELECT * FROM CART C WHERE C.customer_id = $a ";
 
 $result2 = mysqli_query($db, $query2);
 
-$timezone = date_default_timezone_get();
+$timezone  = date_default_timezone_set('Europe/London');
 
 $cart_id = 110;
 $customer_id  = 110;
@@ -182,7 +182,7 @@ while($row = mysqli_fetch_assoc($result2))
 }
 
 $query3 = "INSERT INTO ORDERS(time, amount, status ,cart_id, customer_id, sm_id)	
-VALUES ('$timezone ','1', 'Preparing', '$cart_id','$customer_id' , '14')";
+VALUES (' 15:09:17 ','1', 'Preparing', '$cart_id','$customer_id' , '14')";
 
 
 mysqli_query($db, $query3);
