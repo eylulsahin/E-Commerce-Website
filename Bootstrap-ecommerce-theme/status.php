@@ -208,7 +208,12 @@ $stmt2->close();
 						<td>Last Name:</td>
 						<td><?=$last_name?></td>
           </tr>
-          <tr>
+
+
+          <?php
+          if(isset($_SESSION['loggedin']) && ($_SESSION['pm']==0)&& ($_SESSION['sm']==0)) {
+                 ?>
+                  <tr>
 						<td>Email:</td>
 						<td><?=$email?></td>
           </tr>
@@ -220,6 +225,11 @@ $stmt2->close();
 						<td>Phone:</td>
 						<td><?=$phone?></td>
           </tr>
+                <?php
+                    }
+                  ?> 
+
+         
 
         </table>
             <br> </br>
