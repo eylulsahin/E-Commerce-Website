@@ -1,7 +1,7 @@
 <?php
 
 include "config.php"; // Using database connection file here
-
+session_start();
 $product_id = $_GET['product_id']; // get id through query string
 
 $qry = mysqli_query($db,"SELECT * FROM PRODUCT WHERE product_id='$product_id'"); // select query

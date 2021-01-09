@@ -167,8 +167,7 @@ $stmt->close();
         <div class="row-fluid">
             <div class="block">
                 <div class="navbar navbar-inner block-header">
-                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div>  
-                    <button class="button2" > EDIT ORDERS</button>      
+                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div>      
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
@@ -180,12 +179,14 @@ $stmt->close();
 				<table>
                     <tr>
                     <th>SM ID</th>
-						<th>Order ID</th>
+					            	<th>Order ID</th>
                         <th>Time</th>
                         <th>Amount</th>
                         <th>Status</th>
                         <th>Cart ID</th>
                         <th>Customer ID</th>
+                        <th>Edit </th>
+                        <th>Delete </th>
                      </tr>
             <?php
 
@@ -196,33 +197,28 @@ $stmt->close();
               $sql_statement= "SELECT * FROM ORDERS  WHERE sm_id= $b";
               $result = mysqli_query($db, $sql_statement);
 
-            while($row = mysqli_fetch_assoc($result))
-            {
-                $sm_id = $row['sm_id'];
-                $order_id = $row['order_id'];
-                $time = $row['time'];
-                $amount = $row['amount'];
-                $status = $row['status'];
-                $cart_id = $row['cart_id'];
-                $customer_id = $row['customer_id'];
-                echo  "<tr>".
-                "<th>". $sm_id ."</th>".
-                  "<th>". $order_id ."</th>".
-                "<th>". $time . "</th>".
-                "<th>". $amount ."</th>".
-                "<th>". $status ."</th>".
-                "<th>". $cart_id ."</th>".
-                "<th>". $customer_id ."</th>".
-                "</tr>";
-                }             
-                ?>
+              while($data = mysqli_fetch_array($result))
+              {
+              ?>
+                <tr>
+                <td><?php echo $b; ?></td>
+                  <td><?php echo $data['order_id']; ?></td>
+                  <td><?php echo $data['time']; ?></td>
+                  <td><?php echo $data['amount']; ?></td> 
+                  <td><?php echo $data['status']; ?></td>  
+                  <td><?php echo $data['cart_id']; ?></td>  
+                  <td><?php echo $data['customer_id']; ?></td>    
+                  <td><a href="edit_ord.php?order_id=<?php echo $data['order_id']; ?>">Edit</a></td>
+                  <td><a href="delete_ord.php?order_id=<?php echo $data['order_id']; ?>">Delete</a></td>
+                </tr>	
+              <?php
+              }
+              ?>
 
         </table>
             </div>
             <div>
             <br> </br>
-		
-
       </div>
       
     

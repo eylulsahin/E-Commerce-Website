@@ -184,7 +184,21 @@ $stmt2->close();
             <div class="block">
                 <div class="navbar navbar-inner block-header">
                     <div style="color:black" class="muted pull-left"><b>ACCOUNT INFORMATION</b></div> 
-                    <button class="button2" > EDIT MY INFORMATION</button>          
+                    <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0 ||$_SESSION['sm']!=0 )  ) {
+                 ?>
+                 <a href="edit_status.php" > EDIT ADMIN INFORMATION</a>   
+                <?php
+                    }
+                  ?>
+                  <?php
+                  if(isset($_SESSION['loggedin']) && ($_SESSION['pm']==0 && $_SESSION['sm']==0 )  ) {
+                 ?>
+                 <a href="edit_status_cust.php" > EDIT CUSTOMER INFORMATION</a>   
+                <?php
+                    }
+                  ?>  
+                           
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
