@@ -155,8 +155,8 @@ if (mysqli_connect_errno()) {
         <div class="row-fluid">
             <div class="block">
                 <div class="navbar navbar-inner block-header">
-                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div>  
-                    <button class="button2" > EDIT PRODUCTS</button>      
+                    <div style="color:black" class="muted pull-left"><b>TRACKABLE ORDERS</b></div> 
+                    <a  href= "add_pro.php"> ADD NEW PRODUCT</a>     
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
@@ -174,6 +174,8 @@ if (mysqli_connect_errno()) {
                         <th>Rating</th>
                         <th>Model </th>
                         <th>Price </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                      </tr>
       <?php
 
@@ -184,26 +186,23 @@ if (mysqli_connect_errno()) {
           $sql_statement= "SELECT * FROM CATEGORY C, PRODUCT P WHERE C.category_id=P.category_id AND C.pm_id= $b";
           $result = mysqli_query($db, $sql_statement);
 
-          while($row = mysqli_fetch_assoc($result))
-        {
-           $pm_id = $row['pm_id'];
-           $category_id = $row['category_id'];
-           $product_id = $row['product_id'];
-           $name = $row['name'];
-           $rating = $row['rating'];
-           $model = $row['model'];
-           $price = $row['price'];
-          echo  "<tr>".
-          "<th>". $pm_id ."</th>".
-            "<th>". $category_id ."</th>".
-          "<th>". $product_id . "</th>".
-          "<th>". $name ."</th>".
-          "<th>". $rating ."</th>".
-          "<th>". $model ."</th>".
-          "<th>". $price ."</th>".
-          "</tr>";
-      }
-  ?>
+         while($data = mysqli_fetch_array($result))
+            {
+            ?>
+              <tr>
+              <td><?php echo $b; ?></td>
+                <td><?php echo $data['category_id']; ?></td>
+                <td><?php echo $data['product_id']; ?></td>
+                <td><?php echo $data['name']; ?></td> 
+                <td><?php echo $data['rating']; ?></td>  
+                <td><?php echo $data['model']; ?></td>  
+                <td><?php echo $data['price']; ?></td>    
+                <td><a href="edit_pro.php?product_id=<?php echo $data['product_id']; ?>">Edit</a></td>
+                <td><a href="delete_pro.php?product_id=<?php echo $data['product_id']; ?>">Delete</a></td>
+              </tr>	
+            <?php
+            }
+            ?>
         </table>
             </div>
             <div>

@@ -54,7 +54,7 @@ session_start();
   box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
   border-radius: 5px;
   display: flex;
-  border: 3px solid black;
+  border: 1px solid black;
   flex-direction: column;
   width: 90%;
 
