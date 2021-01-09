@@ -254,6 +254,8 @@ $stmt2->close();
               <th>Time</th>
               <th>Amount</th>
               <th>Status</th>
+              <th>Rate</th>
+              <th>Comment</th>
           </tr>
           
 				   	<?php
@@ -265,21 +267,28 @@ $stmt2->close();
 
                 $result = mysqli_query($db, $sql_statement);
 
-                while($row = mysqli_fetch_assoc($result))
-                {
-                  $id = $row['order_id'];
-                  $time = $row['time'];
-                  $amount = $row['amount'];
-                  $status = $row['status'];
                 
-                  echo  "<tr>".
-                        "<th>". $id ."</th>".
-                        "<th>". $time . "</th>".
-                        "<th>". $amount ."</th>".
-                        "<th>". $status ."</th>".
-                        "</tr>";
-                }
-                ?>
+              while($data = mysqli_fetch_array($result))
+              {
+              ?>
+                <tr>
+                  <td><?php echo $data['order_id']; ?></td>
+                  <td><?php echo $data['time']; ?></td>
+                  <td><?php echo $data['amount']; ?></td> 
+                  <td><?php echo $data['status']; ?></td>  
+                  <?php
+                  if($data['status']=='Delivered'){
+                 ?>
+                <td><a href="give_rate.php?order_id=<?php echo $data['order_id']; ?>">RATE</a></td>
+                <td><a href="give_com.php?order_id=<?php echo $data['order_id']; ?>">COMMENT</a></td>  
+                <?php
+                    }
+                  ?> 
+                  
+                </tr>	
+              <?php
+              }
+              ?>
   
           </table>
   </body>
