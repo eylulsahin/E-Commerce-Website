@@ -190,7 +190,6 @@ session_start();
         $image = $row['image_path'];
         $category = $row['category_name'];
         $rating = $row['rating'];
-	     
 
         echo "<div class=\"row-fluid\">
           			<ul class=\"thumbnails\">
@@ -220,10 +219,10 @@ session_start();
                           </div>
                           </div>'.
                           			'<form action="send_cart.php" method="POST">'.
-                          			 '<input type="hidden" id="fname" name="name" value='.$name. ' placeholder="Type your name"><br>'.
+                          			 '<input type="hidden" id="fname" name="name" value='.$name.' placeholder="Type your name"><br>'.
                           			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
-  									'<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
+  									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
   						         	"<button class=\"button2\">Add to Cart</button>".
   						         	"</form> ".
   					         	"</div>".
@@ -236,6 +235,7 @@ session_start();
       echo '<input id="mycount" type="hidden" value="'. $count.' ">'
 
       ?>
+      
 <script>
       $(document).ready(function(){
         mycount = $("#mycount").val();
@@ -256,7 +256,7 @@ session_start();
 
 
         </script>
-      <hr>
+     
 
     </div> 
 

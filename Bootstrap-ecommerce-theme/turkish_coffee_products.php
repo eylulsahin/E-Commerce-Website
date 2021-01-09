@@ -10,44 +10,74 @@ session_start();
 <html lang="en">
   <head>
 
-    <style>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+	<style>
+		.rating {
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  color: #888888;
+  font-size: 25px;
+  height: 25px;
+  width: auto;
+  margin: 0;
+  position: relative;
+  padding: 0;
+}
+
+.rating-upper {
+  color: #c52b2f;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.rating-lower {
+  padding: 0;
+  display: flex;
+  z-index: 0;
+}
+
+    .card {
+  max-width: 800px;
+  max-height: 1000px;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  font-family: arial;
+  background-color: white;
+  width: 350px;
+  height: 500px;
+  margin: 30px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 5px;
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  width: 90%;
+
+}
+
+
+		</style>
+  <head>
+  <style>
       body {
         background-image: url('./images/sign in:up alternative.png');
         background-repeat: no-repeat;
         background-attachment: fixed;  
         background-size: cover;
       }
-
-      .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  background-color: white;
-}
-
-.price {
-  color: grey;
-  font-size: 22px;
-}
-
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-.card button:hover {
-  opacity: 0.7;
-}
       </style>
+
+<meta charset="utf-8">
+		<title>Home Page</title>
+		<link href="style_login.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
     <meta charset="utf-8">
     <title>Coffee House</title>
@@ -66,11 +96,6 @@ session_start();
     <!--[if lt IE 9]>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <![endif]-->
-  </head>
-
-<!--style="background-image: url('./images/sign in:up alternative.png');" background-size: cover;   background-repeat: no-repeat;
-    background-attachment: fixed; -->
-
   <body>
 
 
@@ -145,61 +170,95 @@ session_start();
   </div><!-- /.navbar -->
 </div>
 
-      <div class="card">
-        
-        <img src="./images/t_c 150g d_r.png"  style="width:100%">
-        <h2>Double Roasted Turkish Coffee 150g </h2>
-        <p class="price">$15</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Double Roasted Turkish Coffee 150g" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="4" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-</form>    
+
+<?php
+      include "config.php";
+                
+      $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id AND C.category_id = 2";
+
+      $result = mysqli_query($db, $sql_statement);
+      $count=1;
+      while($row = mysqli_fetch_assoc($result))
+      { 
+      	$id = $row['product_id'];
+        $name = $row['name'];
+        $price = $row['price'];
+        $image = $row['image_path'];
+        $category = $row['category_name'];
+        $rating = $row['rating'];
+
+        echo "<div class=\"row-fluid\">
+          			<ul class=\"thumbnails\">
+          				<li class=\"span3\">
+          					<div class=\"card\">
+  					         	<img width=\"150\" height=\"150\" src=\"". $image. "\">
+  					         	<div class=\"caption\">".
+  						         	"<h3>" .$category  ."</h3>". 
+  						         	"<p>" . $name . "</p>" .
+  						         	"<p>" . $price . "$"."</p>". 
+                        '<div class="rating">
+                          <input id="rating_txt'. $count .'" type="hidden" value="'. $rating.' ">
+                          <div class="rating-upper" id="rating'. $count .'" style="width: 0%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="rating-lower">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          </div>
+                          </div>'.
+                          			'<form action="send_cart.php" method="POST">'.
+                          			 '<input type="hidden" id="fname" name="name" value='.$name.' placeholder="Type your name"><br>'.
+                          			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
+                          			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
+  									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
+  						         	"<button class=\"button2\">Add to Cart</button>".
+  						         	"</form> ".
+  					         	"</div>".
+  				         	"</li>";
+                    "</ul>".
+                "</div>";
+
+                $count = $count+1;
+      }
+      echo '<input id="mycount" type="hidden" value="'. $count.' ">'
+
+      ?>
       
-    
-        <img src="./images/t_c_150g r.png"  style="width:100%">
-        <h2>Roasted Turkish Coffee 150g </h2>
-        <p class="price">$12</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Roasted Turkish Coffee 150g" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="7" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="12" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-</form>    
+<script>
+      $(document).ready(function(){
+        mycount = $("#mycount").val();
+        console.log(mycount);
+
+        for(i=0;i<mycount;i++)
+        {
+          var element = $('#rating' + i);
+          //console.log(element);
+          element2 = $('#rating_txt' + i);
+          console.log(element2.val());
+          element.css({
+                width: (element2.val())*20 + "%"
+            });
+        }
+            
+        });
 
 
-        <img src="./images/t_c 250 g d_r.png"  style="width:100%">
-        <h2>Double Roasted Turkish Coffee 250g </h2>
-        <p class="price">$18</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Double Roasted Turkish Coffee 250g " placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="5" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="18" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-</form>    
+        </script>
+     
 
+    </div> 
 
-        <img src="./images/t_c 250g r.png" style="width:100%">
-        <h2>Roasted Turkish Coffee 250g </h2>
-        <p class="price">$15</p>
-        <form action="send_cart.php" method="POST">
-  <input type="hidden" id="fname" name="name" value="Roasted Turkish Coffee 250g" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="customer_id" value="3" placeholder="Type your name"><br>
-  <input type="hidden" id="fname" name="product_id" value="6" placeholder="Type your name"><br>
-  <input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>
-  <input type="hidden" id="fname" name="price" value="15" placeholder="Type your name"><br>
-	<button class="button2">Add to Cart</button>
-</form>    
-    
-        
-      </div>
       
   </body>
 </html>
+
+
+    
