@@ -148,6 +148,15 @@ session_start();
             ?> 
 
 
+                <?php
+                if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
+                 ?>
+                 <li><a href="pm_product.php">Admin Products</a></li>
+                <?php
+                    }
+                  ?>
+
+
 
           <?php
           if(isset($_SESSION['loggedin'])) {
