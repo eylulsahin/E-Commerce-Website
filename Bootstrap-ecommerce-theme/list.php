@@ -3,7 +3,9 @@
 include "config.php";
 
 session_start();
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -98,6 +100,12 @@ session_start();
 
   <body>
 
+  <p style="color:white"><a style="color:white" href="list.php?sortby=pricehilo">Price (Highest-Lowest) </a></p>
+  <p style="color:white"><a style="color:white" href="list.php?sortby=pricelohi">Price (Lowest-Highest)</a></p>
+  <p style="color:white"><a style="color:white" href="list.php?sortby=name">Alphabetical </a></p>
+
+
+
   <div class="container" >
 
 <div class="masthead">
@@ -177,10 +185,28 @@ session_start();
 
 <?php
       include "config.php";
-                
-      $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";
-
+              
+      $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";     
+      
       $result = mysqli_query($db, $sql_statement);
+
+
+      if (isset($_GET['sortby'])) {
+        
+        $sortby = $_GET['sortby'];
+        
+        if ($sortby == 'pricehilo') {
+          $result = mysqli_query($db,"SELECT * FROM PRODUCT P , CATEGORY C WHERE P.category_id=C.category_id  ORDER BY  P.price DESC");
+        }
+        elseif ($sortby == 'pricelohi') {
+          $result = mysqli_query($db,"SELECT * FROM PRODUCT P , CATEGORY C WHERE P.category_id=C.category_id ORDER BY P.price ASC");
+        }
+        elseif ($sortby == 'name') {
+          $result = mysqli_query($db,"SELECT * FROM PRODUCT P , CATEGORY C WHERE P.category_id=C.category_id ORDER BY P.name");
+        }
+      }
+
+
       $count=1;
       while($row = mysqli_fetch_assoc($result))
       { 
