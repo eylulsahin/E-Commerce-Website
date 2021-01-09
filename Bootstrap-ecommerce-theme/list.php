@@ -40,12 +40,24 @@ session_start();
 }
 
     .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 800px;
+  max-height: 1000px;
   margin: auto;
   text-align: center;
+  align-items: center;
   font-family: arial;
   background-color: white;
+  width: 350px;
+  height: 500px;
+  margin: 30px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 5px;
+  display: flex;
+  border: 1px solid red;
+  flex-direction: column;
+  width: 90%;
+
 }
 
 
@@ -156,16 +168,14 @@ session_start();
 
 <?php
       include "config.php";
-                if(($_SESSION['pm']!=0)) {
-                 echo '<button class="button2" > EDIT PRODUCTS</button>'; 
-                }
+                
       $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";
 
       $result = mysqli_query($db, $sql_statement);
       $count=1;
       while($row = mysqli_fetch_assoc($result))
       { 
-
+      	$id = $row['product_id'];
         $name = $row['name'];
         $price = $row['price'];
         $image = $row['image_path'];
@@ -177,7 +187,7 @@ session_start();
           			<ul class=\"thumbnails\">
           				<li class=\"span3\">
           					<div class=\"card\">
-  					         	<img alt=\"200x200\" src=\"". $image. "\">
+  					         	<img width=\"150\" height=\"150\" src=\"". $image. "\">
   					         	<div class=\"caption\">".
   						         	"<h3>" .$category  ."</h3>". 
   						         	"<p>" . $name . "</p>" .
@@ -200,7 +210,13 @@ session_start();
                           </div>
                           </div>
                           </div>'.
-  						         	"<p><a href=\"send_cart.php\" class=\"btn btn-primary\">Add To Cart</a></p>".
+                          			'<form action="send_cart.php" method="POST">'.
+                          			 '<input type="hidden" id="fname" name="name" value='.$name. ' placeholder="Type your name"><br>'.
+                          			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
+                          			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
+  									'<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
+  						         	"<button class=\"button2\">Add to Cart</button>".
+  						         	"</form> ".
   					         	"</div>".
   				         	"</li>";
                     "</ul>".
