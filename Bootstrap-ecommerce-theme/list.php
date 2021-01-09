@@ -7,7 +7,6 @@ session_start();
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -65,6 +64,49 @@ session_start();
 
 		</style>
   <head>
+<!-- FILTER CSS STARTS -->
+
+
+
+<title>Filter Tutorial on Technopoints</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  <style>
+ 
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+    .column {
+        width: 100%;
+    }
+}
+.thumbnail img{
+    max-width: 100%; /* do not stretch the bootstrap column */
+}
+ 
+.img-wrapper{
+	width: 100%;
+	padding-bottom: 100%; /* your aspect ratio here! */
+	position: relative;
+}
+ 
+.img-wrapper img{
+	position: absolute;
+	top: 0; 
+	bottom: 0; 
+	left: 0; 
+	right: 0;
+	min-height: 50%;
+	max-height: 100%;
+	min-width:100%/* optional: if you want the smallest images to fill the .thumbnail */
+}
+</style>
+
+
+
+  <!-- FILTER CSS ENDS -->
   <style>
       body {
         background-image: url('./images/sign in:up alternative.png');
@@ -100,11 +142,48 @@ session_start();
 
   <body>
 
+
+<div class="container" >
   <p style="color:white"><a style="color:white" href="list.php?sortby=pricehilo">Price (Highest-Lowest) </a></p>
   <p style="color:white"><a style="color:white" href="list.php?sortby=pricelohi">Price (Lowest-Highest)</a></p>
   <p style="color:white"><a style="color:white" href="list.php?sortby=name">Alphabetical </a></p>
+</div>
 
 
+<!-- FILTER STARTED -->
+
+
+<div class="container">
+ 
+  <form method="post">
+    <div class="row">
+  
+    <div class="col-sm-3">
+        <div class="form-group">
+            <select class="form-control" name="rating">
+                <option value ="">Filter Rating</option>
+                <option value="range4">Bigger than and equal to 3</option>
+                <option value="range5">Lower than 3</option>
+            </select>
+        </div>
+    </div>
+	    <div class="col-sm-3">
+        <div class="form-group">
+            <select class="form-control" name="price">
+                <option value="">Filter Price</option>
+                <option value="range1">1$ - 30$</option>
+                <option value="range2">31$ - 50$</option>
+                <option value="range3">51$ - 1000$</option>
+            </select>
+        </div>
+    </div>
+	<button type="submit" class="btn btn-primary">Apply</button>
+</div>
+</form>
+</div>
+
+
+<!-- FILTER ENDS -->
 
   <div class="container" >
 
@@ -185,6 +264,8 @@ session_start();
 
 <?php
       include "config.php";
+
+      // sort starts
               
       $sql_statement = "SELECT * FROM PRODUCT P, CATEGORY C WHERE P.category_id=C.category_id";     
       
@@ -205,6 +286,69 @@ session_start();
           $result = mysqli_query($db,"SELECT * FROM PRODUCT P , CATEGORY C WHERE P.category_id=C.category_id ORDER BY P.name");
         }
       }
+
+// sort ends
+
+
+
+
+// filter starts
+  
+      error_reporting( error_reporting() & ~E_NOTICE );
+      if(isset($_POST['price'])) {
+          if($_POST['price']=='range1'){
+         $low = 1; $high = 30;
+       }
+       elseif($_POST['price']=='range2'){
+         $low = 31; $high = 50;
+       }
+       elseif($_POST['price']=='range3'){
+         $low = 51; $high = 1000;
+       } 
+     
+     }
+   
+     if(isset($_POST['rating'])) {
+       if($_POST['rating']=='range4'){
+      $low_r = 3; $high_r = 5;
+    }
+       elseif($_POST['rating']=='range5'){
+      $low_r = 0; $high_r = 3;
+    }
+    
+   }
+   
+     
+       $price = $_POST['price'];
+       $rating = $_POST['rating'];
+     
+     
+       if(isset($_POST['price']) &&  isset($_POST['rating'])) { 
+         $qry = "SELECT * FROM PRODUCT P
+       WHERE P.price > $low AND P.price < $high AND P.rating > $low_r AND P.rating < $high_r  "; }
+   
+       if(isset($_POST['price']) &&  !isset($_POST['rating'])) { 
+         $qry = "SELECT * FROM PRODUCT P
+         WHERE P.price > $low AND P.price < $high "; }
+   
+       if(!isset($_POST['price']) &&  isset($_POST['rating'])) { 
+         $qry = "SELECT * FROM PRODUCT P
+         WHERE P.rating > $low_r AND P.rating < $high_r  "; }
+   
+       if(!isset($_POST['price']) &&  !isset($_POST['rating'])) { 
+         $qry = "SELECT * FROM PRODUCT P "; }
+
+         $k = mysqli_query($db,$qry);
+       
+         $num = mysqli_num_rows($k);
+
+      if($num > 0) {
+
+        $result = mysqli_query($db,$qry);
+
+      }
+     
+// filter ends
 
 
       $count=1;
