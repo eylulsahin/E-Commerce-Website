@@ -194,7 +194,34 @@ while($id_rows = mysqli_fetch_assoc($myresult))
 <button>DELETE</button>
 </form>
 
-<h3><a style="color:white" href="checkout.php">Click to Checkout</a></h3>
+
+
+
+<?php
+
+
+$customer_id = $_SESSION['id'];
+
+$query = "SELECT COUNT(*) AS C FROM BASKET WHERE BASKET.customer_id = $customer_id ";
+
+$result = mysqli_query($db, $query);
+$count = mysqli_fetch_assoc($result)["C"];
+
+
+if($count  == 0){
+
+
+}
+
+else{
+
+  echo '<h3><a style="color:white" href="checkout.php">Click to Checkout</a></h3>';
+}
+
+?>
+
+
+
 
 
   </body>

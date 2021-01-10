@@ -141,7 +141,6 @@ $result = mysqli_query($db, $sql_statement);
 
 $total_cost= 0;
 $total_quantity= 0;
-$product_id = 124131;
 
 while($row = mysqli_fetch_assoc($result))
 { 
@@ -158,7 +157,6 @@ $query = "INSERT INTO CART(customer_id, product_id,total_cost ,quantity)
 					VALUES ('$a ','  $product_id', '$total_cost','$total_quantity')";
 	
 	mysqli_query($db, $query);
-
 
 
 
