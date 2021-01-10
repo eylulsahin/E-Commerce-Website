@@ -191,7 +191,7 @@ mysqli_query($db, $query3);
 //delete basket
 $a = $_SESSION['id'];
 
-$sql_command = "DELETE FROM BASKET WHERE customer_id = $a ";
+$sql_command = "DELETE FROM BASKET ";
 
 mysqli_query($db, $sql_command);
 

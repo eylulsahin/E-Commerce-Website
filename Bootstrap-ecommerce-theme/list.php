@@ -155,7 +155,7 @@ session_start();
 <!-- FILTER STARTED -->
 <div class="container">
  
-  <form method="post">
+  <form method="POST">
     <div class="row">
   
     <div class="col-sm-3">
@@ -233,7 +233,6 @@ session_start();
               }
             ?> 
 
-
                 <?php
                 if(isset($_SESSION['loggedin']) && ($_SESSION['pm']!=0)) {
                  ?>
@@ -241,8 +240,6 @@ session_start();
                 <?php
                     }
                   ?>
-
-
 
           <?php
           if(isset($_SESSION['loggedin'])) {
@@ -252,8 +249,6 @@ session_start();
               }
             ?> 
           
-
-
         </ul>
       </div>
     </div>

@@ -50,6 +50,20 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM USERS WHERE username = 
 			}
 
 			echo 'Welcome ' . $_SESSION['id'] . '!';
+
+			// BASKET REFRESH
+			include "config.php";
+
+			$a = $_SESSION['id'];
+
+			$sql_command = "DELETE FROM BASKET ";
+
+			$myresult11 = mysqli_query($db, $sql_command);
+
+			mysqli_fetch_assoc($myresult11);
+			// BASKET REFRESH
+
+
 			header('Location: index.php');
 			
 		} else {

@@ -6,7 +6,7 @@ session_start();
 
 $a = $_SESSION['id'];
 
-$sql_command = "DELETE FROM BASKET WHERE customer_id = $a ";
+$sql_command = "DELETE FROM BASKET";
 
 $myresult = mysqli_query($db, $sql_command);
 
