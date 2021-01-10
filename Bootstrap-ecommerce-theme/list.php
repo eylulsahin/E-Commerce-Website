@@ -105,7 +105,6 @@ session_start();
 </style>
 
 
-
   <!-- FILTER CSS ENDS -->
   <style>
       body {
@@ -143,16 +142,17 @@ session_start();
   <body>
 
 
+<!-- SORT STARTED -->
 <div class="container" >
-  <p style="color:white"><a style="color:white" href="list.php?sortby=pricehilo">Price (Highest-Lowest) </a></p>
-  <p style="color:white"><a style="color:white" href="list.php?sortby=pricelohi">Price (Lowest-Highest)</a></p>
-  <p style="color:white"><a style="color:white" href="list.php?sortby=name">Alphabetical </a></p>
+  <p ><a style="color:white" href="list.php?sortby=pricehilo">Price (Highest-Lowest) </a></p>
+  <p ><a style="color:white" href="list.php?sortby=pricelohi">Price (Lowest-Highest)</a></p>
+  <p ><a style="color:white" href="list.php?sortby=name">Alphabetical </a></p>
 </div>
+<!-- SORT STARTED -->
+
 
 
 <!-- FILTER STARTED -->
-
-
 <div class="container">
  
   <form method="post">
@@ -171,8 +171,8 @@ session_start();
         <div class="form-group">
             <select class="form-control" name="price">
                 <option value="">Filter Price</option>
-                <option value="range1">1$ - 30$</option>
-                <option value="range2">31$ - 50$</option>
+                <option value="range1">1$ - 20$</option>
+                <option value="range2">21$ - 50$</option>
                 <option value="range3">51$ - 1000$</option>
             </select>
         </div>
@@ -180,10 +180,9 @@ session_start();
 	<button type="submit" class="btn btn-primary">Apply</button>
 </div>
 </form>
-</div>
-
-
+</div> 
 <!-- FILTER ENDS -->
+
 
   <div class="container" >
 
@@ -297,10 +296,10 @@ session_start();
       error_reporting( error_reporting() & ~E_NOTICE );
       if(isset($_POST['price'])) {
           if($_POST['price']=='range1'){
-         $low = 1; $high = 30;
+         $low = 1; $high = 20;
        }
        elseif($_POST['price']=='range2'){
-         $low = 31; $high = 50;
+         $low = 21; $high = 50;
        }
        elseif($_POST['price']=='range3'){
          $low = 51; $high = 1000;
@@ -324,29 +323,28 @@ session_start();
      
      
        if(isset($_POST['price']) &&  isset($_POST['rating'])) { 
-         $qry = "SELECT * FROM PRODUCT P
-       WHERE P.price > $low AND P.price < $high AND P.rating > $low_r AND P.rating < $high_r  "; }
+         $qry = "SELECT * FROM PRODUCT P, CATEGORY C
+       WHERE P.category_id=C.category_id AND P.price > $low AND P.price < $high AND P.rating > $low_r AND P.rating < $high_r  "; }
    
        if(isset($_POST['price']) &&  !isset($_POST['rating'])) { 
-         $qry = "SELECT * FROM PRODUCT P
-         WHERE P.price > $low AND P.price < $high "; }
+         $qry = "SELECT * FROM PRODUCT P, CATEGORY C
+       WHERE P.category_id=C.category_id AND P.price > $low AND P.price < $high "; }
    
        if(!isset($_POST['price']) &&  isset($_POST['rating'])) { 
-         $qry = "SELECT * FROM PRODUCT P
-         WHERE P.rating > $low_r AND P.rating < $high_r  "; }
+         $qry = "SELECT * FROM PRODUCT P , CATEGORY C
+         WHERE P.category_id=C.category_id AND P.rating > $low_r AND P.rating < $high_r  "; }
    
        if(!isset($_POST['price']) &&  !isset($_POST['rating'])) { 
-         $qry = "SELECT * FROM PRODUCT P "; }
+         $qry = "SELECT * FROM PRODUCT P, CATEGORY C
+         WHERE P.category_id=C.category_id"; }
 
          $k = mysqli_query($db,$qry);
-       
-         $num = mysqli_num_rows($k);
 
-      if($num > 0) {
-
-        $result = mysqli_query($db,$qry);
-
+         if($k && mysqli_num_rows($k) >= 0){
+     
+          $result = mysqli_query($db,$qry);
       }
+ 
      
 // filter ends
 
