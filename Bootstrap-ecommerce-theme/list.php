@@ -155,13 +155,13 @@ session_start();
 <!-- FILTER STARTED -->
 <div class="container">
  
-  <form method="POST">
+  <form method="POST" action = "list.php?filter=true">
     <div class="row">
   
     <div class="col-sm-3">
         <div class="form-group">
             <select class="form-control" name="rating">
-                <option value ="">Filter Rating</option>
+                <option value ="ranger">Filter Rating</option>
                 <option value="range4">Bigger than and equal to 3</option>
                 <option value="range5">Lower than 3</option>
             </select>
@@ -170,7 +170,7 @@ session_start();
 	    <div class="col-sm-3">
         <div class="form-group">
             <select class="form-control" name="price">
-                <option value="">Filter Price</option>
+                <option value="rangep">Filter Price</option>
                 <option value="range1">1$ - 20$</option>
                 <option value="range2">21$ - 50$</option>
                 <option value="range3">51$ - 1000$</option>
@@ -266,7 +266,11 @@ session_start();
       $result = mysqli_query($db, $sql_statement);
 
 
+      $is_sort = false;
+
       if (isset($_GET['sortby'])) {
+
+        // echo $_GET['sortby'] . "  ";
         
         $sortby = $_GET['sortby'];
         
@@ -279,6 +283,7 @@ session_start();
         elseif ($sortby == 'name') {
           $result = mysqli_query($db,"SELECT * FROM PRODUCT P , CATEGORY C WHERE P.category_id=C.category_id ORDER BY P.name");
         }
+        $is_sort = true;
       }
 
 // sort ends
@@ -290,7 +295,10 @@ session_start();
   
       error_reporting( error_reporting() & ~E_NOTICE );
       if(isset($_POST['price'])) {
-          if($_POST['price']=='range1'){
+        if($_POST['price']=='rangep'){
+          $low = 0; $high = 1000;
+        }
+        elseif($_POST['price']=='range1'){
          $low = 1; $high = 20;
        }
        elseif($_POST['price']=='range2'){
@@ -303,7 +311,10 @@ session_start();
      }
    
      if(isset($_POST['rating'])) {
-       if($_POST['rating']=='range4'){
+      if($_POST['rating']=='ranger'){
+        $low_r = 0; $high_r = 5;
+      }
+      elseif($_POST['rating']=='range4'){
       $low_r = 3; $high_r = 5;
     }
        elseif($_POST['rating']=='range5'){
@@ -312,10 +323,13 @@ session_start();
     
    }
    
-     
+
+   $filter = $_GET['filter'];
+
        $price = $_POST['price'];
        $rating = $_POST['rating'];
      
+       if($filter == true){
      
        if(isset($_POST['price']) &&  isset($_POST['rating'])) { 
          $qry = "SELECT * FROM PRODUCT P, CATEGORY C
@@ -336,10 +350,10 @@ session_start();
          $k = mysqli_query($db,$qry);
 
          if($k && mysqli_num_rows($k) >= 0){
-     
+          // echo "filtera girdik";
           $result = mysqli_query($db,$qry);
       }
- 
+ }
      
 // filter ends
 
