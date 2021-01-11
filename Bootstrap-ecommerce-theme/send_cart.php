@@ -51,7 +51,7 @@ mysqli_query($db, $query2);
 
 }
 
-header ("Location: index.php");
+header ("Location: list.php");
 
 }
 
