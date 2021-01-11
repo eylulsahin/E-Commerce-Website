@@ -1,7 +1,7 @@
 Coffeeshop Website
 =========================
 
-Backend development of coffeeshop website.
+Backend development of coffeeshop website using html, php, javascript and css.
 
 Features included are: 
 Log in as user, sales manager, product manager or continue as guest.
