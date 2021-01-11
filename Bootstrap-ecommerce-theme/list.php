@@ -183,6 +183,13 @@ session_start();
 </div> 
 <!-- FILTER ENDS -->
 
+<!-- SEARCH STARTED -->
+<div class="container">
+	<form action="list.php" method="GET">
+		<input type="string" id="fname" name="searchfor" placeholder="What are you searching for?"><br>
+ 	<button class="button2">Search</button>
+</div> 
+<!-- SEARCH ENDS -->
 
   <div class="container" >
 
@@ -358,6 +365,19 @@ session_start();
 // filter ends
 
 
+//search starts
+ if(isset($_GET['searchfor']))
+ {
+ 	$query = $_GET["searchfor"];
+    $sql_statement = "SELECT *
+                    FROM PRODUCT P, CATEGORY C
+                    WHERE (P.name LIKE '%$query%') OR (P.model LIKE '%$query%') OR ( C.category_name LIKE '%$query%') AND P.category_id = C.category_id
+                  GROUP BY P.product_id";
+    $result = mysqli_query($db,$sql_statement);
+ }
+
+//search ends
+
       $count=1;
       while($row = mysqli_fetch_assoc($result))
       { 
@@ -411,18 +431,6 @@ session_start();
       }
       echo '<input id="mycount" type="hidden" value="'. $count.' ">';
 
-
-      $sql_statement1 = "SELECT * FROM PRODUCT P, COMMENTS C WHERE P.product_id=C.products_id";     
-      
-      $result1 = mysqli_query($db, $sql_statement1);
-      while($row = mysqli_fetch_assoc($result1))
-      { 
-      	$name = $row['name'];
-      	$comment = $row['text'];
-      	echo "<h3>" .$name  ."</h3>".
-      		 "<p>" . $comment . "$"."</p>";
-
-      }
 
       ?>
       
