@@ -396,7 +396,7 @@ session_start();
                           </div>
                           </div>'.
                           			'<form action="send_cart.php" method="POST">'.
-                          			 '<input type="hidden" id="fname" name="name" value='.$name.' placeholder="Type your name"><br>'.
+                          			 '<input type="hidden" id="fname" name="name" value="'.$name.' "placeholder="Type your name"><br>'.
                           			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
   									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
@@ -409,7 +409,20 @@ session_start();
 
                 $count = $count+1;
       }
-      echo '<input id="mycount" type="hidden" value="'. $count.' ">'
+      echo '<input id="mycount" type="hidden" value="'. $count.' ">';
+
+
+      $sql_statement1 = "SELECT * FROM PRODUCT P, COMMENTS C WHERE P.product_id=C.products_id";     
+      
+      $result1 = mysqli_query($db, $sql_statement1);
+      while($row = mysqli_fetch_assoc($result1))
+      { 
+      	$name = $row['name'];
+      	$comment = $row['text'];
+      	echo "<h3>" .$name  ."</h3>".
+      		 "<p>" . $comment . "$"."</p>";
+
+      }
 
       ?>
       

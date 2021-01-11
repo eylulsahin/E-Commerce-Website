@@ -214,12 +214,22 @@ width: 90%;
                           </div>
                           </div>'.
                           			'<form action="send_cart.php" method="POST">'.
-                          			 '<input type="hidden" id="fname" name="name" value='.$name.' placeholder="Type your name"><br>'.
+                          			 '<input type="hidden" id="fname" name="name" value="'.$name.' "placeholder="Type your name"><br>'.
                           			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
   									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
   						         	"<button class=\"button2\">Add to Cart</button>".
-  						         	"</form> ".
+  						         	
+
+                        $sql_statement_comment = "SELECT * FROM COMMENTS C WHERE C.product_id=$id";
+                       
+                        $result_comment = mysqli_query($db, $sql_statement_comment);
+                        while($row_comment = mysqli_fetch_assoc($result_comment))
+                        { 
+                          $comment = $row_comment['text'];
+                          echo "<br>". $comment;
+                        }
+                        echo "</form> ".
   					         	"</div>".
   				         	"</li>";
                     "</ul>".
