@@ -113,6 +113,15 @@ session_start();
         background-attachment: fixed;  
         background-size: cover;
       }
+      .dropdown-menu {
+    z-index: 1;
+    position absolute;
+    display: none;
+}
+.nav:hover .dropdown-menu {
+    display: block;
+}
+
       </style>
 
 <meta charset="utf-8">
