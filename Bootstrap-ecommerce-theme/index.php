@@ -48,6 +48,16 @@ if (!isset($_SESSION['loggedin'])) {
     <!--[if lt IE 9]>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <![endif]-->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style_slide.css" />
+    <link rel="stylesheet" href="lightslider.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="lightslider.js"></script>
+
+
+
   </head>
 
 <!--style="background-image: url('./images/sign in:up alternative.png');" background-size: cover;   background-repeat: no-repeat;
@@ -147,6 +157,125 @@ if (!isset($_SESSION['loggedin'])) {
       </div>
 
     </div> <!-- /container -->
+
+    <ul id="autoWidth" class="card">
+      <li class="item-a">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/espressocmachinepng.png" width="100" height="200" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Espresso Machine</a>
+              <span>Coffee Machine</span>
+            </div>
+            <a href="#" class="price">$229</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-b">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/filtercoffeemachine.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Filter Cofee Machine</a>
+              <span>Coffee Machine</span>
+            </div>
+            <a href="#" class="price">$149</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-c">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/moliendo-ethiopia-lem-keffa-yoresel-kahve-1000-gr.jpg" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Ethiopia Espresso</a>
+              <span>Coffee</span>
+            </div>
+            <a href="#" class="price">$15</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-d">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/hot-c-50.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Hot Chocolate</a>
+              <span>Hot Chocolate</span>
+            </div>
+            <a href="#" class="price">$15.5</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-e">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/f-c.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Vanilla Flavoured Filter Coffee</a>
+              <span> Coffee</span>
+            </div>
+            <a href="#" class="price">$19</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-f">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/t-c-150-r.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Roasted Turkish Coffee 150g</a>
+              <span>Coffee</span>
+            </div>
+            <a href="#" class="price">$12</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-g">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/moliendo-kenya-aa-muranga-yoresel-kahve-1000-gr.jpg" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Kenya Espresso</a>
+              <span>Coffee</span>
+            </div>
+            <a href="#" class="price">$15</a>
+          </div>
+        </div>
+      </li>
+      <li class="item-h">
+        <div class="box">
+          <div class="slide-img">
+            <img src="images/t-c-250-d-r.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <div class="type">
+              <a href="#">Double Roasted Turkish Coffee 150g</a>
+              <span>Coffee</span>
+            </div>
+            <a href="#" class="price">$15</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <script type="text/javascript" src="script.js"></script>
+
+
+
   
   </body>
 </html>
