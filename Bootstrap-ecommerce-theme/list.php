@@ -62,6 +62,40 @@ session_start();
 }
 
 
+.sort {
+
+  margin-top: 50px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  text-align: left;
+  font-family: arial;
+  flex-direction: column;
+
+}
+
+.search {
+ 
+  margin-top: 20px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  text-align: right;
+  font-family: arial;
+  flex-direction: column;
+
+}
+
+.filter {
+
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-family: arial;
+  flex-direction: column;
+  
+}
+
+
 		</style>
   <head>
 <!-- FILTER CSS STARTS -->
@@ -152,7 +186,7 @@ session_start();
 
 
 <!-- SORT STARTED -->
-<div class="container" >
+<div  class="sort">
   <p ><a style="color:white" href="list.php?sortby=pricehilo">Price (Highest-Lowest) </a></p>
   <p ><a style="color:white" href="list.php?sortby=pricelohi">Price (Lowest-Highest)</a></p>
   <p ><a style="color:white" href="list.php?sortby=name">Alphabetical </a></p>
@@ -162,7 +196,7 @@ session_start();
 
 
 <!-- FILTER STARTED -->
-<div class="container">
+<div class="filter">
  
   <form method="POST" action = "list.php?filter=true">
     <div class="row">
@@ -193,7 +227,7 @@ session_start();
 <!-- FILTER ENDS -->
 
 <!-- SEARCH STARTED -->
-<div class="container">
+<div class="search">
 	<form action="list.php" method="GET">
 		<input type="string" id="fname" name="searchfor" placeholder="What are you searching for?"><br>
  	<button class="button2">Search</button>
