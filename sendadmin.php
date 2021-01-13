@@ -11,6 +11,7 @@ $sql_statement = "DELETE FROM BASKET WHERE product_id = $id";
 
 $result = mysqli_query($db, $sql_statement);
 
+
 header ("Location: new.php");
 
 }

@@ -51,7 +51,7 @@ align-items: center;
 font-family: arial;
 background-color: white;
 width: 350px;
-height: 500px;
+height: 650px;
 margin: 30px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
@@ -220,7 +220,8 @@ width: 90%;
                           			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
   									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
-  						         	"<button class=\"button2\">Add to Cart</button>";
+  						         	"<button class=\"button2\">Add to Cart</button><br></br>"; 
+  						         	echo "<strong>REVIEWS:</strong>";
 
                         $sql_statement_comment = "SELECT * FROM COMMENTS C WHERE C.product_id=$id";
                        

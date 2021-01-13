@@ -31,6 +31,7 @@ if(isset($_POST['add'])) // when click on Update button
        // mysqli_close($db); // Close connection
         header("location:list.php"); // redirects to all records page
         exit;
-    }  	
+    } 
+    else { echo "You already gave review for this product!";} 	
 }
 ?>

@@ -8,6 +8,7 @@ $qry = mysqli_query($db,"DELETE  FROM ORDERS WHERE order_id='$order_id'"); // se
 
 $data = mysqli_fetch_array($qry); // fetch data
 
+
 header("location:sm_order.php");
 
 ?>

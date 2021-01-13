@@ -143,6 +143,7 @@ $result = mysqli_query($db, $sql_statement);
 $total_cost= 0;
 $total_quantity= 0;
 
+
 while($row = mysqli_fetch_assoc($result))
 { 
 
@@ -154,10 +155,37 @@ while($row = mysqli_fetch_assoc($result))
 
 }
 
+
 $query = "INSERT INTO CART(customer_id, product_id,total_cost ,quantity)	
 					VALUES ('$a ','  $product_id', '$total_cost','$total_quantity')";
-	
-	mysqli_query($db, $query);
+  
+  mysqli_query($db, $query);
+  
+
+  $query12= "SELECT MAX(cart_id) AS K  FROM CART C WHERE C.customer_id = $a ";
+
+  $result3 = mysqli_query($db, $query12);
+
+  $cart_id = mysqli_fetch_assoc($result3)["K"];
+
+
+
+  $sql_statement2 = "SELECT * FROM BASKET B WHERE B.customer_id = $a ";
+
+  $result2 = mysqli_query($db, $sql_statement2);
+
+  while($row2 = mysqli_fetch_assoc($result2))
+{ 
+  $product_id = $row2['product_id'];
+
+
+
+$query8 = "INSERT INTO  CART_PRODUCT(cart_id, product_id)	
+VALUES ('$cart_id ', '$product_id')";
+
+mysqli_query($db, $query8);
+
+}
 
 
 
