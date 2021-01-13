@@ -1,9 +1,4 @@
-<h3>GIVE RATING</h3>
 
-<form method="POST">
-  <input type="float" name="rating" min="0" max="5" value="" placeholder="Enter a Rating " Required>
-  <input type="submit" name="add" value="ADD">
-</form>
 
 <?php
 
@@ -16,18 +11,33 @@ $user_id= $_SESSION["id"];
 
 //$data = mysqli_fetch_array($qry); // fetch data
 
+$qry_product = mysqli_query($db,"SELECT CA.product_id  FROM ORDERS O, CART_PRODUCT CA WHERE O.order_id= $order_id AND O.cart_id=CA.cart_id"); // select query
+
+ // fetch data
+
+$my_array= array();
+while ($data_product = mysqli_fetch_array($qry_product))
+{
+  array_push($my_array,$data_product);
+}
+$row_num= count($my_array);
+
+
+
+
+
 if(isset($_POST['add'])) // when click on Update button
 {
     $rate = $_POST['rating'];
-
+    $product_id= $_POST['product'];
     if (0<=$rate && $rate<5)
     {
       $qry = mysqli_query($db,"SELECT C.product_id AS A FROM ORDERS O , CART C WHERE  O.cart_id=C.cart_id  AND O.order_id=$order_id ");
-      $product_id = mysqli_fetch_assoc($qry)["A"]; 
+      //$product_id = mysqli_fetch_assoc($qry)["A"]; 
       
       $add = mysqli_query($db,"INSERT INTO RATES (rate,customer_id,product_id) VALUES ('$rate', '$user_id', '$product_id')");
     
-      if($add && $qry)
+      if($add )
       {
          // mysqli_close($db); // Close connection
           header("location:list.php"); // redirects to all records page
@@ -39,3 +49,26 @@ if(isset($_POST['add'])) // when click on Update button
   	
 }
 ?>
+
+<h3>GIVE RATING</h3>
+
+<form method="POST">
+<input id="product_id"  name="product" placeholder="Enter a Product ID "list="defaultNumbers" Required>
+
+
+<datalist id="defaultNumbers">
+<?php
+              for ($i=0 ; $i<$row_num ;$i++)
+              {
+                 ?>
+                 <option value=<?php 
+                  echo $my_array[$i]["product_id"];?> >
+                
+                <?php
+                  }  
+                  ?>
+
+</datalist>
+  <input type="float" name="rating" min="0" max="5" value="" placeholder="Enter a Rating " Required>
+  <input type="submit" name="add" value="ADD">
+</form>
