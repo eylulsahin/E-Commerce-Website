@@ -49,7 +49,7 @@ session_start();
   font-family: arial;
   background-color: white;
   width: 350px;
-  height: 500px;
+  height: 600px;
   margin: 30px auto;
   background: #FFFFFF;
   box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
@@ -439,7 +439,8 @@ session_start();
   					         	<div class=\"caption\">".
   						         	"<h3>" .$category  ."</h3>". 
   						         	"<p>" . $name . "</p>" .
-  						         	"<p>" . $price . "$"."</p>". 
+                         "<p>" . $price . "$"."</p>". 
+                         '<a href="product_view.php?product_id=' . /* do not echo here */ $id . '">View</a><br></br>'.
                         '<div class="rating">
                           <input id="rating_txt'. $count .'" type="hidden" value="'. $rating.' ">
                           <div class="rating-upper" id="rating'. $count .'" style="width: 0%">

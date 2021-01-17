@@ -42,7 +42,7 @@ z-index: 0;
 
   .card {
 max-width: 800px;
-max-height: 1000px;
+max-height: 500px;
 margin: auto;
 text-align: center;
 align-items: center;
@@ -194,7 +194,8 @@ width: 90%;
   					         	<div class=\"caption\">".
   						         	"<h3>" .$category  ."</h3>". 
   						         	"<p>" . $name . "</p>" .
-  						         	"<p>" . $price . "$"."</p>". 
+                         "<p>" . $price . "$"."</p>". 
+                         '<a href="product_view.php?product_id=' . /* do not echo here */ $id . '">View</a><br></br>'.
                         '<div class="rating">
                           <input id="rating_txt'. $count .'" type="hidden" value="'. $rating.' ">
                           <div class="rating-upper" id="rating'. $count .'" style="width: 0%">
@@ -218,17 +219,8 @@ width: 90%;
                           			 '<input type="hidden" id="fname" name="product_id" value='.$id.' placeholder="Type your name"><br>'.
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
   									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
-  						         	"<button class=\"button2\">Add to Cart</button> <br></br>"; 
-  						         	echo "<strong>REVIEWS:</strong>" ;
-
-                        $sql_statement_comment = "SELECT * FROM COMMENTS C WHERE C.product_id=$id";
-                       
-                        $result_comment = mysqli_query($db, $sql_statement_comment);
-                        while($row_comment = mysqli_fetch_assoc($result_comment))
-                        { 
-                          $comment = $row_comment['text'];
-                          echo "<br>". $comment;
-                        }
+                         "<button class=\"button2\">Add to Cart</button> <br></br>"; 
+  						        
                         echo "</form> ".
   					         	"</div>".
   				         	"</li>";

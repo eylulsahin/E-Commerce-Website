@@ -51,7 +51,7 @@ align-items: center;
 font-family: arial;
 background-color: white;
 width: 350px;
-height: 650px;
+height: 500px;
 margin: 30px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
@@ -187,7 +187,6 @@ width: 90%;
         $image = $row['image_path'];
         $category = $row['category_name'];
         $rating = $row['rating'];
-
         echo "<div class=\"row-fluid\">
           			<ul class=\"thumbnails\">
           				<li class=\"span3\">
@@ -196,7 +195,9 @@ width: 90%;
   					         	<div class=\"caption\">".
   						         	"<h3>" .$category  ."</h3>". 
   						         	"<p>" . $name . "</p>" .
-  						         	"<p>" . $price . "$"."</p>". 
+                         "<p>" . $price . "$"."</p>". 
+                      
+                         '<a href="product_view.php?product_id=' . /* do not echo here */ $id . '">View</a><br></br>'.
                         '<div class="rating">
                           <input id="rating_txt'. $count .'" type="hidden" value="'. $rating.' ">
                           <div class="rating-upper" id="rating'. $count .'" style="width: 0%">
@@ -221,16 +222,7 @@ width: 90%;
                           			 '<input type="number" min="1" id="fname" name="quantity" placeholder="Enter Quantity"><br>'.
   									             '<input type="hidden" id="fname" name="price" value='.$price.' placeholder="Type your name"><br>'.
   						         	"<button class=\"button2\">Add to Cart</button><br></br>"; 
-  						         	echo "<strong>REVIEWS:</strong>";
-
-                        $sql_statement_comment = "SELECT * FROM COMMENTS C WHERE C.product_id=$id";
-                       
-                        $result_comment = mysqli_query($db, $sql_statement_comment);
-                        while($row_comment = mysqli_fetch_assoc($result_comment))
-                        { 
-                          $comment = $row_comment['text'];
-                          echo "<br>". $comment;
-                        }
+  						         	
                         echo "</form> ".
   					         	"</div>".
   				         	"</li>";
@@ -242,7 +234,7 @@ width: 90%;
       echo '<input id="mycount" type="hidden" value="'. $count.' ">'
 
       ?>
-      
+    
 <script>
       $(document).ready(function(){
         mycount = $("#mycount").val();
