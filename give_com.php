@@ -10,7 +10,7 @@ $user_id= $_SESSION["id"];
 
 //$data = mysqli_fetch_array($qry); // fetch data
 
-$qry_product = mysqli_query($db,"SELECT CA.product_id  FROM ORDERS O, CART_PRODUCT CA WHERE O.order_id= $order_id AND O.cart_id=CA.cart_id"); // select query
+$qry_product = mysqli_query($db,"SELECT *  FROM ORDERS O, CART_PRODUCT CA, PRODUCT P WHERE O.order_id= $order_id AND O.cart_id=CA.cart_id AND P.product_id=CA.product_id"); // select query
 
  // fetch data
 
@@ -22,10 +22,7 @@ while ($data_product = mysqli_fetch_array($qry_product))
 $row_num= count($my_array);
 
 
-
-
-
-
+//echo var_dump($my_array);
 
 
 if(isset($_POST['add'])) // when click on Update button
@@ -57,12 +54,11 @@ if(isset($_POST['add'])) // when click on Update button
 
 <datalist id="defaultNumbers">
 <?php
+
               for ($i=0 ; $i<$row_num ;$i++)
               {
                  ?>
-                 <option value=<?php 
-                  echo $my_array[$i]["product_id"];?> >
-                
+                 <option value="<?php echo $my_array[$i]['product_id'] . '">' . $my_array[$i]['name']; ?>
                 <?php
                   }  
                   ?>
