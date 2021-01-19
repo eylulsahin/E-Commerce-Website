@@ -30,7 +30,7 @@ if(isset($_POST['add'])) // when click on Update button
 {
     $rate = $_POST['rating'];
     $product_id= $_POST['product'];
-    if (0<=$rate && $rate<5)
+    if (0<=$rate && $rate<=5)
     {
       $qry = mysqli_query($db,"SELECT C.product_id AS A FROM ORDERS O , CART C WHERE  O.cart_id=C.cart_id  AND O.order_id=$order_id ");
       //$product_id = mysqli_fetch_assoc($qry)["A"]; 
