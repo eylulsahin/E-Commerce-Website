@@ -61,7 +61,7 @@ if(isset($_POST['add'])) // when click on Update button
               for ($i=0 ; $i<$row_num ;$i++)
               {
                  ?>
-                 <<option value="<?php echo $my_array[$i]['product_id'] . '">' . $my_array[$i]['name']; ?>
+                 <<option value="<?php echo $my_array[$i]['product_id'] . '">' . $my_array[$i]['name']; ?>">
                 
                 <?php
                   }  
